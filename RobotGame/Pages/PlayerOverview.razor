@@ -1,0 +1,40 @@
+﻿@page "/playeroverview"
+@inherits PlayerOverviewBase
+
+<h1>DataOverview</h1>
+
+<h4>Player Statics</h4>
+@if (data.PlayerStatics.Ascended > 0)
+{
+    <h6>Times ascended: @data.PlayerStatics.Ascended</h6>
+}
+@if (data.PlayerStatics.CollectedBolts > 0)
+{
+    <h6>Times ascended: @data.PlayerStatics.CollectedBolts</h6>
+}
+
+<div class="alert alert-danger">@data.Points</div>
+
+<h4>Data Logs</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Time</th>
+            <th>Text</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var log in data.Logs.Take(20))
+        {
+            <tr>
+                <td>@log.Time</td>
+                <td>@log.Text</td>
+                <td>
+                    <a href="@($"playerlogdetail/{log.Text}")" class="btn btn-primary tab-content">
+                        Detail
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
