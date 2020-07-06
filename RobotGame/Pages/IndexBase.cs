@@ -9,29 +9,15 @@ using RobotGame.Shared.PlayerComponents;
 
 namespace RobotGame.Pages
 {
-    public partial class PlayerLogDetailBase : ComponentBase
+    public partial class IndexBase : ComponentBase
     {
-        [Parameter] public string LogId { get; set; }
         [Inject] public ISyncLocalStorageService LocalStorage { get; set; }
 
         [Inject] public Game Game { get; set; }
-
-        public LogEntry CurrentLogEntry { get; set; }
-
+        
         protected override Task OnInitializedAsync()
         {
-            var count = LocalStorage.GetItem<string>("count");
-
-            CurrentLogEntry = new LogEntry()
-            {
-                Text = count??="A",
-                Time = DateTime.MinValue
-            };
-
-            count += "A";
-
-            LocalStorage.SetItem("count", count);
-            
+            Game.Load(LocalStorage);
 
             return base.OnInitializedAsync();
         }

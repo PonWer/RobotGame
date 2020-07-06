@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace RobotGame.Shared.Player
+﻿namespace RobotGame.Shared.PlayerComponents
 {
     public class Statics
     {

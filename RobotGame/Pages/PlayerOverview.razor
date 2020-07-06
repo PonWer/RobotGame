@@ -4,16 +4,16 @@
 <h1>DataOverview</h1>
 
 <h4>Player Statics</h4>
-@if (data.PlayerStatics.Ascended > 0)
+@if (Game.Player.Statics.Ascended > 0)
 {
-    <h6>Times ascended: @data.PlayerStatics.Ascended</h6>
+    <h6>Times ascended: @Game.Player.Statics.Ascended</h6>
 }
-@if (data.PlayerStatics.CollectedBolts > 0)
+@if (Game.Player.Statics.CollectedBolts > 0)
 {
-    <h6>Times ascended: @data.PlayerStatics.CollectedBolts</h6>
+    <h6>Times ascended: @Game.Player.Statics.CollectedBolts</h6>
 }
 
-<div class="alert alert-danger">@data.Points</div>
+<div class="alert alert-danger">@Game.Player.Data.Points</div>
 
 <h4>Data Logs</h4>
 <table class="table">
@@ -24,7 +24,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var log in data.Logs.Take(20))
+        @foreach (var log in Game.Player.LogEntries.Take(20))
         {
             <tr>
                 <td>@log.Time</td>

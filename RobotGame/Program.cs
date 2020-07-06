@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using RobotGame.Shared;
 
 namespace RobotGame
 {
@@ -22,6 +23,8 @@ namespace RobotGame
             builder
                 .Services
                 .AddBlazoredLocalStorage(config => config.JsonSerializerOptions.WriteIndented = true);
+
+            builder.Services.AddSingleton<Game>();
 
             await builder.Build().RunAsync();
         }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RobotGame.Shared.Player
+namespace RobotGame.Shared.PlayerComponents
 {
     public class LogEntry
     {
