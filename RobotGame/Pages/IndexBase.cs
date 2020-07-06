@@ -9,15 +9,13 @@ using RobotGame.Shared.PlayerComponents;
 
 namespace RobotGame.Pages
 {
-    public partial class IndexBase : ComponentBase
+    public partial class IndexBase : PageBase
     {
         [Inject] public ISyncLocalStorageService LocalStorage { get; set; }
 
-        [Inject] public Game Game { get; set; }
-        
         protected override Task OnInitializedAsync()
         {
-            Game.Load(LocalStorage);
+            Game.StartTickLoop();
 
             return base.OnInitializedAsync();
         }
