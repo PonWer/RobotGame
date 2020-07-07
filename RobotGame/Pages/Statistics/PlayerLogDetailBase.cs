@@ -4,7 +4,7 @@ using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components;
 using RobotGame.Shared.PlayerComponents;
 
-namespace RobotGame.Pages
+namespace RobotGame.Pages.Statistics
 {
     public partial class PlayerLogDetailBase : PageBase
     {

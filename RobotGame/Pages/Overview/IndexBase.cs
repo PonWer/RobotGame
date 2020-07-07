@@ -2,7 +2,7 @@
 using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components;
 
-namespace RobotGame.Pages
+namespace RobotGame.Pages.Overview
 {
     public partial class IndexBase : PageBase
     {

@@ -1,4 +1,4 @@
-﻿namespace RobotGame.Pages
+﻿namespace RobotGame.Pages.DevDebug
 {
     public class DebugBase : PageBase
     {

@@ -1,4 +1,4 @@
-﻿namespace RobotGame.Pages
+﻿namespace RobotGame.Pages.Statistics
 {
     public class StatisticsBase : PageBase
     {
