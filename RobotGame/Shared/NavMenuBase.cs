@@ -10,6 +10,8 @@ namespace RobotGame.Shared
     {
         public bool collapseNavMenu = true;
 
+        [Inject] public Game Game { get; set; }
+
         public string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 
         public void ToggleNavMenu()
@@ -17,6 +19,11 @@ namespace RobotGame.Shared
             collapseNavMenu = !collapseNavMenu;
         }
 
+        protected override Task OnInitializedAsync()
+        {
+            Game.StartTickLoop();
 
+            return base.OnInitializedAsync();
+        }
     }
 }

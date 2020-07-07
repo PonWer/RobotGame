@@ -4,5 +4,6 @@
     {
         public int Ascended { get; set; }
         public int CollectedBolts { get; set; }
+        public int TimesStarted { get; set; }
     }
 }

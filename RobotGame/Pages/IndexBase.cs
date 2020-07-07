@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components;
-using RobotGame.Shared;
-using RobotGame.Shared.PlayerComponents;
 
 namespace RobotGame.Pages
 {
@@ -15,7 +10,7 @@ namespace RobotGame.Pages
 
         protected override Task OnInitializedAsync()
         {
-            Game.StartTickLoop();
+            
 
             return base.OnInitializedAsync();
         }
