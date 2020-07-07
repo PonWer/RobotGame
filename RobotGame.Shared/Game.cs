@@ -7,22 +7,34 @@ using Blazored.LocalStorage;
 
 namespace RobotGame.Shared
 {
-    public class Game
+    public interface IGameLoop
     {
+        void PreRenderUpdate();
+        void PostRenderUpdate();
+    }
+
+    public class Game : IGameLoop
+    {
+        #region DebugInfo
         public int FrameCount { get; set; }
+        public int ListenerCountOnUpdated => Updated?.GetInvocationList()?.Length ?? 0;
+        #endregion
+
 
         public Player Player { get; set; }
 
-        public event EventHandler Updated;
-        public int ListenerCountOnUpdated => Updated?.GetInvocationList()?.Length ?? 0;
+        public RobotManager RobotManager { get; private set; }
+        
+        #region GameLoop
 
+        public event EventHandler Updated;
         private CancellationTokenSource cancellationTokenSource;
-        private const int TICK_MS_INTERVAL = (1_000/4);
+        private const int TICK_MS_INTERVAL = (1_000 / 4);
         private bool GameStarted = false;
 
         public async Task StartTickLoop()
         {
-            if(GameStarted)
+            if (GameStarted)
                 return;
             GameStarted = true;
 
@@ -35,18 +47,36 @@ namespace RobotGame.Shared
                 {
                     await Task.Delay(TICK_MS_INTERVAL);
 
-                    FrameCount++;
+                    PreRenderUpdate();
                     Updated?.Invoke(this, new EventArgs());
+                    PostRenderUpdate();
                 }
             }, token);
 
             await task;
         }
-        
+
+        #endregion
+
+        public void PreRenderUpdate()
+        {
+            RobotManager.PreRenderUpdate();
+        }
+
+        public void PostRenderUpdate()
+        {
+            FrameCount++;
+
+            RobotManager.PostRenderUpdate();
+        }
+
         public Game()
         {
             Player = new Player();
+
+            RobotManager = RobotManager.Instance;
         }
+
 
         public void Load(ISyncLocalStorageService localStorage)
         {
