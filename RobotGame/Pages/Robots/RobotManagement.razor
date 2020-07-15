@@ -8,11 +8,8 @@
     <thead>
     <tr>
         <th>Job</th>
-        <th>Health %</th>
-        <th>Health Max</th>
-        <th>Health Current</th>
-        <th>Battery Max</th>
-        <th>Battery Current</th>
+        <th>Health</th>
+        <th>Battery</th>
     </tr>
     </thead>
     <tbody>
@@ -25,11 +22,8 @@
                         <option value=@template>@template</option>
                     }
                 </select></td>
-                <td>@robot.HealthPercentage</td>
-                <td>@robot.Health_Max</td>
-                <td>@robot.Health_Current</td>
-                <td>@robot.Battery_Max</td>
-                <td>@robot.Battery_Current</td>
+                <td>@robot.HealthPercentage% (@robot.Health_Current/@robot.Health_Max)</td>
+                <td>@robot.Battery_Current/@robot.Battery_Max</td>
             </tr>
         }
     </tbody>

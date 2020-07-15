@@ -4,4 +4,19 @@
 <h1>DebugInfo</h1>
 
 <h4>FrameCount: @Game.FrameCount</h4>
-<h4>Subscribers to game loop: @Game.ListenerCountOnUpdated</h4>
+<h4>Subscribers to game loop: @Game.ListenerOnUpdated.Count</h4>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var listener in @Game.ListenerOnUpdated)
+    {
+        <tr>
+            <td>@listener</td>
+        </tr>
+    }
+    </tbody>
+</table>

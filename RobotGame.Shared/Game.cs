@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -18,7 +19,7 @@ namespace RobotGame.Shared
     {
         #region DebugInfo
         public int FrameCount { get; set; }
-        public int ListenerCountOnUpdated => Updated?.GetInvocationList()?.Length ?? 0;
+        public List<string> ListenerOnUpdated => Updated?.GetInvocationList()?.Select( x => x.Target.ToString()).ToList();
         #endregion
 
 

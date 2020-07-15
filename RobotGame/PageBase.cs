@@ -21,13 +21,13 @@ namespace RobotGame
             return base.OnInitializedAsync();
         }
 
-        protected void NavigationManagerOnLocationChanged(object sender, LocationChangedEventArgs e)
+        protected virtual void NavigationManagerOnLocationChanged(object sender, LocationChangedEventArgs e)
         {
             NavigationManager.LocationChanged -= NavigationManagerOnLocationChanged;
             Game.Updated -= GameOnUpdated;
         }
 
-        private void GameOnUpdated(object sender, EventArgs e)
+        protected void GameOnUpdated(object sender, EventArgs e)
         {
             StateHasChanged();
         }
