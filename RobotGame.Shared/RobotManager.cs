@@ -18,6 +18,8 @@ namespace RobotGame.Shared
 
         public void PreRenderUpdate()
         {
+            Console.WriteLine($"Robots.Count: {Robots.Count}");
+
             foreach (var robot in Robots)
             {
                 robot.PreRenderUpdate();

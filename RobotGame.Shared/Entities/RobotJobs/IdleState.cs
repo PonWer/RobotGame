@@ -6,24 +6,29 @@ namespace RobotGame.Shared.Entities.RobotJobs
     {
         public override void OnStateEnter(Robot inRobot)
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"Entering State {nameof(IdleState)}");
         }
 
         public static IdleState Instance { get; } = new IdleState();
 
         public override void OnStateUpdate(Robot inRobot)
         {
+            if (inRobot.Battery_Current >= inRobot.Battery_Max)
+            {
+                return;
+            }
+
             inRobot.Battery_Current++;
         }
 
         public override void OnStateLeave(Robot inRobot)
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"Leaving State {nameof(IdleState)}");
         }
 
         public override string Name()
         {
-            return nameof(IdleState);
+            return Enum.GetName(typeof(RobotJob), RobotJob.Idle);
         }
     }
 }

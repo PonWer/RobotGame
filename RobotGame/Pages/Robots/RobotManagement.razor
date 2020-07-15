@@ -1,28 +1,36 @@
 ﻿@page "/robotmanagement"
+@using RobotGame.Shared.Entities.RobotJobs
 @inherits RobotManagementBase
 
 <h3>RobotManagement</h3>
 
 <table class="table">
     <thead>
-        <tr>
-            <th>Health %</th>
-            <th>Health Max</th>
-            <th>Health Current</th>
-            <th>Battery Max</th>
-            <th>Battery Current</th>
-        </tr>
+    <tr>
+        <th>Job</th>
+        <th>Health %</th>
+        <th>Health Max</th>
+        <th>Health Current</th>
+        <th>Battery Max</th>
+        <th>Battery Current</th>
+    </tr>
     </thead>
     <tbody>
         @foreach (var robot in Game.RobotManager.Robots)
         {
-        <tr>
-            <td>@robot.HealthPercentage</td>
-            <td>@robot.Health_Max</td>
-            <td>@robot.Health_Current</td>
-            <td>@robot.Battery_Max</td>
-            <td>@robot.Battery_Current</td>
-        </tr>
+            <tr>
+                <td><select @onchange="@robot.OnSelectedJobChange" value="@robot.CurrentState.Name()">
+                    @foreach (var template in AllJobs)
+                    {
+                        <option value=@template>@template</option>
+                    }
+                </select></td>
+                <td>@robot.HealthPercentage</td>
+                <td>@robot.Health_Max</td>
+                <td>@robot.Health_Current</td>
+                <td>@robot.Battery_Max</td>
+                <td>@robot.Battery_Current</td>
+            </tr>
         }
     </tbody>
 </table>

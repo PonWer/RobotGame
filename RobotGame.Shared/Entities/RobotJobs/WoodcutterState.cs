@@ -10,23 +10,29 @@ namespace RobotGame.Shared.Entities.RobotJobs
         
         public override void OnStateEnter(Robot inRobot)
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"Entering State {nameof(WoodcutterState)}");
         }
 
         public override void OnStateUpdate(Robot inRobot)
         {
+            if (inRobot.Battery_Current <= 0)
+            {
+                inRobot.ChangeState(IdleState.Instance);
+                return;
+            }
+
             inRobot.Battery_Current--;
             ResourceManager.Instance.Wood++;
         }
 
         public override void OnStateLeave(Robot inRobot)
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"Leaving State {nameof(WoodcutterState)}");
         }
 
         public override string Name()
         {
-            return nameof(WoodcutterState);
+            return Enum.GetName(typeof(RobotJob), RobotJob.Woodcutter);
         }
     }
 }

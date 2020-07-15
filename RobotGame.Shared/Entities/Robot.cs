@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.AspNetCore.Components;
 using RobotGame.Shared.Entities.RobotJobs;
 using RobotGame.Shared.PlayerComponents;
 
@@ -8,7 +9,7 @@ namespace RobotGame.Shared.Entities
 {
     public class Robot
     {
-        private BaseState _currentBase;
+        public BaseState CurrentState { get; private set; }
         public int Health_Current { get; set; }
         public int Health_Max { get; set; }
 
@@ -21,18 +22,26 @@ namespace RobotGame.Shared.Entities
 
         public void PreRenderUpdate()
         {
-            _currentBase.OnStateUpdate(this);
+            CurrentState?.OnStateUpdate(this);
         }
 
         public void ChangeState(BaseState newState)
         {
-            _currentBase?.OnStateLeave(this);
+            CurrentState?.OnStateLeave(this);
 
-            _currentBase = newState;
+            CurrentState = newState;
 
-            _currentBase.OnStateEnter(this);
+            CurrentState.OnStateEnter(this);
         }
 
+        public void OnSelectedJobChange(ChangeEventArgs e)
+        {
+            var selectedString = e.Value.ToString();
+
+            ChangeState(BaseState.GetState(selectedString));
+
+            Console.WriteLine("It is definitely: " + CurrentState.Name());
+        }
 
     }
 }

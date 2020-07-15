@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 
 namespace RobotGame.Shared.Entities.RobotJobs
 {
@@ -10,7 +11,12 @@ namespace RobotGame.Shared.Entities.RobotJobs
             Woodcutter
         }
 
-        public BaseState GetState(RobotJob inState)
+        public static BaseState GetState(string inState)
+        {
+            return GetState((RobotJob)Enum.Parse(typeof(RobotJob), inState));
+        }
+
+        public static BaseState GetState(RobotJob inState)
         {
             switch (inState)
             {
