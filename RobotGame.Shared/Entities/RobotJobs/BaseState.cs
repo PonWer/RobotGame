@@ -8,7 +8,9 @@ namespace RobotGame.Shared.Entities.RobotJobs
         public enum RobotJob
         {
             Idle,
-            Woodcutter
+            Woodcutter,
+            Miner,
+            Scavenger
         }
 
         public static BaseState GetState(string inState)
@@ -24,6 +26,10 @@ namespace RobotGame.Shared.Entities.RobotJobs
                     return WoodcutterState.Instance;
                 case RobotJob.Idle:
                     return IdleState.Instance;
+                case RobotJob.Miner:
+                    return MinerState.Instance;
+                case RobotJob.Scavenger:
+                    return ScavengerState.Instance;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(inState), inState, null);
             }
