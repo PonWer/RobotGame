@@ -7,7 +7,7 @@ namespace RobotGame.Shared
 {
     public class Player
     {
-        public Data Data { get; private set; }
+        
 
         public Statics Statics { get; private set; }
 
@@ -15,12 +15,6 @@ namespace RobotGame.Shared
 
         public Player()
         {
-            Data = new Data()
-            {
-                Name = "PlayerDataName",
-                Points = 1
-            };
-
             Statics = new Statics()
             {
                 Ascended = 1,

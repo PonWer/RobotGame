@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using RobotGame.Shared.Entities.RobotJobs;
+using RobotGame.Shared.PlayerComponents;
 
 namespace RobotGame.Shared.Entities
 {
     public class Robot
     {
+        private BaseState _currentBase;
         public int Health_Current { get; set; }
         public int Health_Max { get; set; }
 
@@ -18,8 +21,18 @@ namespace RobotGame.Shared.Entities
 
         public void PreRenderUpdate()
         {
-            if(Battery_Current > 0)
-                Battery_Current--;
+            _currentBase.OnStateUpdate(this);
         }
+
+        public void ChangeState(BaseState newState)
+        {
+            _currentBase?.OnStateLeave(this);
+
+            _currentBase = newState;
+
+            _currentBase.OnStateEnter(this);
+        }
+
+
     }
 }

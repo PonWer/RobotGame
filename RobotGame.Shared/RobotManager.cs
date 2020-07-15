@@ -7,9 +7,7 @@ namespace RobotGame.Shared
 {
     public class RobotManager : IGameLoop
     {
-        private static readonly RobotManager instance = new RobotManager();
-
-        public static RobotManager Instance => instance;
+        public static RobotManager Instance { get; } = new RobotManager();
 
         public List<Robot> Robots { get; set; }
 

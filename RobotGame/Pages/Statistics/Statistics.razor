@@ -1,7 +1,7 @@
 ﻿@page "/statistics"
 @inherits StatisticsBase
 
-<h1>DataOverview</h1>
+<h1>ResourceManagerOverview</h1>
 
 <h4>Player Statics</h4>
 @if (Game.Player.Statics.Ascended > 0)
@@ -13,9 +13,7 @@
     <h6>Collected Bolts: @Game.Player.Statics.CollectedBolts</h6>
 }
 
-<div class="alert alert-danger">@Game.Player.Data.Points</div>
-
-<h4>Data Logs</h4>
+<h4>ResourceManager Logs</h4>
 <table class="table">
     <thead>
         <tr>

@@ -8,11 +8,6 @@ namespace RobotGame.Pages.Overview
     {
         [Inject] public ISyncLocalStorageService LocalStorage { get; set; }
 
-        protected override Task OnInitializedAsync()
-        {
-            
 
-            return base.OnInitializedAsync();
-        }
     }
 }

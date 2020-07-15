@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Blazored.LocalStorage;
+using RobotGame.Shared.PlayerComponents;
 
 namespace RobotGame.Shared
 {
@@ -22,6 +23,8 @@ namespace RobotGame.Shared
 
 
         public Player Player { get; set; }
+
+        public ResourceManager ResourceManager { get; private set; }
 
         public RobotManager RobotManager { get; private set; }
         
@@ -74,6 +77,7 @@ namespace RobotGame.Shared
         {
             Player = new Player();
 
+            ResourceManager = ResourceManager.Instance;
             RobotManager = RobotManager.Instance;
         }
 
