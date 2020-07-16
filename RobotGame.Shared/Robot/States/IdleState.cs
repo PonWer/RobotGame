@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RobotGame.Shared.Entities.RobotJobs
+namespace RobotGame.Shared.Robot.States
 {
     public class IdleState : BaseState
     {

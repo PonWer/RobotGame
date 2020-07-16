@@ -6,8 +6,12 @@
 
 
         #region Basic Resources
-        public int Wood { get; set; }
-        public int Iron { get; set; }
+        public float Wood { get; set; }
+
+        public float Iron { get; set; }
+        public float Lithium { get; set; }
+        public float Copper { get; set; }
+
         public int Scrap { get; set; }
 
         public float Energy { get; set; }

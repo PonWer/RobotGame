@@ -5,8 +5,8 @@ using System.Security.Cryptography;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-using RobotGame.Shared.Entities;
-using RobotGame.Shared.Entities.RobotJobs;
+using RobotGame.Shared.Robot;
+using RobotGame.Shared.Robot.States;
 
 namespace RobotGame.Pages.Robots
 {

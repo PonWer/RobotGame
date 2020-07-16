@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using RobotGame.Shared.Entities;
 
 namespace RobotGame.Shared
 {
@@ -9,11 +8,11 @@ namespace RobotGame.Shared
     {
         public static RobotManager Instance { get; } = new RobotManager();
 
-        public List<Robot> Robots { get; set; }
+        public List<Robot.Robot> Robots { get; set; }
 
         public RobotManager()
         {
-            Robots = new List<Robot>();
+            Robots = new List<Robot.Robot>();
         }
 
         public void PreRenderUpdate()

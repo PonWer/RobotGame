@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Runtime.InteropServices;
 
-namespace RobotGame.Shared.Entities.RobotJobs
+namespace RobotGame.Shared.Robot.States
 {
     public abstract class BaseState
     {

@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Microsoft.AspNetCore.Components;
-using RobotGame.Shared.Entities.RobotJobs;
-using RobotGame.Shared.PlayerComponents;
+using RobotGame.Shared.Robot.States;
 
-namespace RobotGame.Shared.Entities
+namespace RobotGame.Shared.Robot
 {
     public class Robot
     {

@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace RobotGame.Shared.Entities.RobotJobs
+namespace RobotGame.Shared.Robot.States
 {
     public class MinerState : BaseState
     {
