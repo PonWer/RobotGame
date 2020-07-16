@@ -65,6 +65,7 @@ namespace RobotGame.Shared
         public void PreRenderUpdate()
         {
             RobotManager.PreRenderUpdate();
+            ResourceManager.PreRenderUpdate();
         }
 
         public void PostRenderUpdate()
