@@ -14,6 +14,11 @@ namespace RobotGame.Shared
             {
                 new Zone()
                 {
+                    Name = "Home"
+                },
+
+                new Zone()
+                {
                     Name = "StartingZone",
 
                     EnemyDamage = 1,

@@ -3,32 +3,40 @@
 
 <h3>RobotManagement</h3>
 
-<table class="table">
-    <thead>
-    <tr>
-        <th>Job</th>
-        <th>Health</th>
-        <th>Battery</th>
-    </tr>
-    </thead>
-    <tbody>
-        @foreach (var robot in Game.RobotManager.Robots)
-        {
-            <tr>
-                <td><select @onchange="@robot.OnSelectedJobChange" value="@robot.CurrentState.Name()">
-                    @foreach (var template in AllJobs)
-                    {
-                        <option value=@template>@template</option>
-                    }
-                </select></td>
-                <td>@robot.HealthPercentage% (@robot.Health_Current/@robot.Health_Max)</td>
-                <td>@robot.Battery_Current/@robot.Battery_Max</td>
-            </tr>
-        }
-    </tbody>
-</table>
-
 <button class="btn btn-primary" @onclick="AddRobot">
     Add Robot
 </button>
+
+
+@foreach (var robot in Game.RobotManager.Robots)
+{
+    <div class="top-row">
+        <div class="container">
+            <span class="oi oi-power-standby" aria-hidden="true"></span>
+            <h4 class="navbar-brand" >Energy: @robot.Battery_Current/@robot.Battery_Max</h4>
+        </div>
+        <div class="container">
+            <span class="oi oi-pencil" aria-hidden="true"></span>
+            <h4 class="navbar-brand">Health: @robot.HealthPercentage% (@robot.Health_Current/@robot.Health_Max)</h4>
+        </div>
+    </div>
+    <div class="container">
+        <h4>Job:</h4>
+        <select @onchange="@robot.OnSelectedJobChange" value="@robot.CurrentState.Name()">
+            @foreach (var template in AllJobs)
+            {
+                <option value=@template>@template</option>
+            }
+        </select>
+        <h4>Zone:</h4>
+        <select @onchange="@robot.OnSelectedZoneChange" value="@robot?.CurrentZone ?? Home">
+            @foreach (var zone in WorldManager.Instance.Zones.Select(x => x.Name))
+            {
+                <option value=@zone>@zone</option>
+            }
+        </select>
+    </div>
+}
+
+
 
