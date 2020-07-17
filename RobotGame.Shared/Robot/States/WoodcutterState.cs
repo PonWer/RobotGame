@@ -9,6 +9,9 @@ namespace RobotGame.Shared.Robot.States
         public override void OnStateEnter(Robot inRobot)
         {
             Console.WriteLine($"Entering State {nameof(WoodcutterState)}");
+
+            if(inRobot.CurrentZone.Name != "Home")
+                inRobot.CurrentProgress = new JobProgress(JobProgress.Obstacle.Tree, inRobot.CurrentZone.Tree.DamageNeededPerWood);
         }
 
         public override void OnStateUpdate(Robot inRobot)
@@ -19,13 +22,24 @@ namespace RobotGame.Shared.Robot.States
                 return;
             }
 
+            if (inRobot.CurrentZone.Name == "Home")
+            {
+                return;
+            }
+
             inRobot.Battery_Current--;
-            ResourceManager.Instance.Wood++;
+
+            if (inRobot.CurrentProgress.AttackAndMove(1))
+            {
+                ResourceManager.Instance.Wood+=inRobot.CurrentZone.Tree.WoodPerTree;
+            }
         }
 
         public override void OnStateLeave(Robot inRobot)
         {
             Console.WriteLine($"Leaving State {nameof(WoodcutterState)}");
+
+            inRobot.CurrentProgress = null;
         }
 
         public override string Name()

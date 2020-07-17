@@ -33,7 +33,7 @@ namespace RobotGame.Shared
 
         public event EventHandler Updated;
         private CancellationTokenSource cancellationTokenSource;
-        private const int TICK_MS_INTERVAL = (1_000 / 4);
+        private const int TICK_MS_INTERVAL = (1_000 / 1);
         private bool GameStarted = false;
 
         public async Task StartTickLoop()

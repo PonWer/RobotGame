@@ -35,7 +35,7 @@ namespace RobotGame.Shared
 
                     Tree = new Tree()
                     {
-                        DamageNeededPerWood = 1,
+                        DamageNeededPerWood = 6,
                         WoodPerTree = 3
                     }
                 },

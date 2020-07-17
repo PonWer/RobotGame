@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.AspNetCore.Components;
+using RobotGame.Shared.Robot.Parts;
 using RobotGame.Shared.Robot.States;
 
 namespace RobotGame.Shared.Robot
@@ -8,7 +10,9 @@ namespace RobotGame.Shared.Robot
     {
         public BaseState CurrentState { get; private set; }
         public Zone CurrentZone { get; set; }
-        public int Health_Current { get; set; }
+        public JobProgress CurrentProgress { get; set; }
+        public Frame Frame { get; set; }
+        public int HealthCurrent { get; set; }
         public int Health_Max { get; set; }
 
         public int Battery_Current { get; set; }
@@ -16,7 +20,8 @@ namespace RobotGame.Shared.Robot
 
         public int AttackBonus { get; set; }
 
-        public int HealthPercentage => (int)(100 * Health_Current / (float)Health_Max);
+
+        public int HealthPercentage => (int)(100 * HealthCurrent / (float)Health_Max);
 
         public void PreRenderUpdate()
         {
@@ -37,17 +42,14 @@ namespace RobotGame.Shared.Robot
             var selectedString = e.Value.ToString();
 
             ChangeState(BaseState.GetState(selectedString));
-
-            Console.WriteLine("It is definitely: " + CurrentState.Name());
         }
 
         public void OnSelectedZoneChange(ChangeEventArgs e)
         {
             var selectedString = e.Value.ToString();
 
+            CurrentZone = WorldManager.Instance.Zones.First(x => x.Name == selectedString);
             ChangeState(CurrentState);
-
-            Console.WriteLine("It is definitely: " + CurrentState.Name());
         }
 
     }
