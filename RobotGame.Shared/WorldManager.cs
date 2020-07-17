@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace RobotGame.Shared
@@ -62,6 +63,8 @@ namespace RobotGame.Shared
                 },
             };
         }
+
+        public List<string> AllZoneNames => Zones.Select(x => x.Name).ToList();
 
         public void PreRenderUpdate()
         {

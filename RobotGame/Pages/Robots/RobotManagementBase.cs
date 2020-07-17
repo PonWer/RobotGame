@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using RobotGame.Shared;
 using RobotGame.Shared.Robot;
 using RobotGame.Shared.Robot.States;
 
@@ -20,7 +21,8 @@ namespace RobotGame.Pages.Robots
                 Health_Max = rand.Next(100),
                 Health_Current = rand.Next(100),
                 Battery_Max = 100,
-                Battery_Current = 100
+                Battery_Current = 100,
+                CurrentZone = WorldManager.Instance.Zones[0]
             };
             //todo
             robot.ChangeState(IdleState.Instance);

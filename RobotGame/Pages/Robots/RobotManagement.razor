@@ -20,7 +20,7 @@
             <h4 class="navbar-brand">Health: @robot.HealthPercentage% (@robot.Health_Current/@robot.Health_Max)</h4>
         </div>
     </div>
-    <div class="container">
+    <div class="row">
         <h4>Job:</h4>
         <select @onchange="@robot.OnSelectedJobChange" value="@robot.CurrentState.Name()">
             @foreach (var template in AllJobs)
@@ -29,8 +29,8 @@
             }
         </select>
         <h4>Zone:</h4>
-        <select @onchange="@robot.OnSelectedZoneChange" value="@robot?.CurrentZone ?? Home">
-            @foreach (var zone in WorldManager.Instance.Zones.Select(x => x.Name))
+        <select @onchange="@robot.OnSelectedZoneChange" value="@robot.CurrentZone.Name">
+            @foreach (var zone in WorldManager.Instance.AllZoneNames)
             {
                 <option value=@zone>@zone</option>
             }
