@@ -14,8 +14,8 @@ namespace RobotGame.Shared
 
     public class Tree
     {
-        public int DamageNeededPerWood { get; set; }
-        public int WoodPerTree { get; set; }
+        public int Health { get; set; }
+        public int Quantity { get; set; }
 
     }
 

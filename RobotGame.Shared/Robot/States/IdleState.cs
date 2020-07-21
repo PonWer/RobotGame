@@ -15,6 +15,11 @@ namespace RobotGame.Shared.Robot.States
         {
             if (inRobot.Battery_Current >= inRobot.Battery_Max)
             {
+                if (inRobot.ReturnToPreviousStateOnMaxBattery && inRobot.PreviousState != null)
+                {
+                    inRobot.ChangeState(inRobot.PreviousState);
+                }
+
                 return;
             }
 

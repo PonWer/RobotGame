@@ -9,6 +9,8 @@ namespace RobotGame.Shared.Robot
     public class Robot
     {
         public BaseState CurrentState { get; private set; }
+        public BaseState PreviousState { get; private set; }
+
         public Zone CurrentZone { get; set; }
         public JobProgress CurrentProgress { get; set; }
         public Frame Frame { get; set; }
@@ -17,6 +19,7 @@ namespace RobotGame.Shared.Robot
 
         public int Battery_Current { get; set; }
         public int Battery_Max { get; set; }
+        public bool ReturnToPreviousStateOnMaxBattery;
 
         public int AttackBonus { get; set; }
 
@@ -32,6 +35,7 @@ namespace RobotGame.Shared.Robot
         {
             CurrentState?.OnStateLeave(this);
 
+            PreviousState = CurrentState;
             CurrentState = newState;
 
             CurrentState.OnStateEnter(this);

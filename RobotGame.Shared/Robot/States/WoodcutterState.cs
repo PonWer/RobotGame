@@ -11,7 +11,7 @@ namespace RobotGame.Shared.Robot.States
             Console.WriteLine($"Entering State {nameof(WoodcutterState)}");
 
             if(inRobot.CurrentZone.Name != "Home")
-                inRobot.CurrentProgress = new JobProgress(JobProgress.Obstacle.Tree, inRobot.CurrentZone.Tree.DamageNeededPerWood);
+                inRobot.CurrentProgress = new JobProgress(JobProgress.Obstacle.Tree, inRobot.CurrentZone.Tree.Health);
         }
 
         public override void OnStateUpdate(Robot inRobot)
@@ -31,7 +31,7 @@ namespace RobotGame.Shared.Robot.States
 
             if (inRobot.CurrentProgress.AttackAndMove(1))
             {
-                ResourceManager.Instance.Wood+=inRobot.CurrentZone.Tree.WoodPerTree;
+                ResourceManager.Instance.Wood+=inRobot.CurrentZone.Tree.Quantity;
             }
         }
 

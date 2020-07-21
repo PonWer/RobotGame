@@ -37,7 +37,8 @@
                         <option value=@zone>@zone</option>
                     }
                 </select>
-            </div>
+                <Check TValue="bool" @bind-Checked="@robot.ReturnToPreviousStateOnMaxBattery">Repeat Job:</Check>
+                </div>
             <div class="grid-item">
                 @if (robot.CurrentProgress != null)
                 {
