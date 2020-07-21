@@ -28,6 +28,7 @@ namespace RobotGame.Shared
 
                     OreVein = new OreVein()
                     {
+                        Health = 3,
                         Copper = 0.1f,
                         Iron = 0.9f,
                         Lithium = 0.0f
@@ -50,6 +51,7 @@ namespace RobotGame.Shared
 
                     OreVein = new OreVein()
                     {
+                        Health = 5,
                         Copper = 0.6f,
                         Iron = 0.3f,
                         Lithium = 0.1f

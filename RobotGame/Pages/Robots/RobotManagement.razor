@@ -1,4 +1,5 @@
 ﻿@page "/robotmanagement"
+@using RobotGame.Shared.Robot
 @inherits RobotManagementBase
 
 <h3>RobotManagement</h3>
@@ -20,16 +21,16 @@
                 <h4 class="navbar-brand">Health: @robot.HealthPercentage% (@robot.HealthCurrent/@robot.Health_Max)</h4>
             </div>
         </div>
-        <div>
-            <div style="align-items: center; align-content: space-evenly; border: 1px solid black; width: 20%; float: left">
-                <h4>Job:</h4>
+        <div class="grid-container">
+            <div class="grid-item">
+                Job:
                 <select @onchange="@robot.OnSelectedJobChange" value="@robot.CurrentState.Name()">
                     @foreach (var template in AllJobs)
                     {
                         <option value=@template>@template</option>
                     }
                 </select>
-                <h4>Zone:</h4>
+                Zone:
                 <select @onchange="@robot.OnSelectedZoneChange" value="@robot.CurrentZone.Name">
                     @foreach (var zone in WorldManager.Instance.AllZoneNames)
                     {
@@ -37,7 +38,7 @@
                     }
                 </select>
             </div>
-            <div style="align-items: center; align-content: space-evenly; border: 1px solid black; width: 80%; float: right">
+            <div class="grid-item">
                 @if (robot.CurrentProgress != null)
                 {
                     <span class="oi oi-person" aria-hidden="true"></span>
@@ -45,7 +46,23 @@
                     {
                         @if (spot)
                         {
-                            <span class="oi oi-dollar" aria-hidden="true"></span>
+                            switch (robot.CurrentProgress.ObstacleType)
+                            {
+                                case JobProgress.Obstacle.Tree:
+                                    <img src="images/Tree_LowRes.jpg" alt="Image" />
+                                    break;
+                                case JobProgress.Obstacle.OreVein:
+                                    <img src="images/MineOre_LowRes.jpg" alt="Image" />
+                                    break;
+                                case JobProgress.Obstacle.Enemy:
+                                    <span>enemy</span>
+                                    break;
+                                default:
+                                    <span>ERROR MISSING IMAGE</span>
+                                    break;
+                            }
+
+
                         }
                         else
                         {
@@ -55,7 +72,7 @@
                 }
                 else
                 {
-                    <h1>No progress</h1>
+                    <span>No progress</span>
                 }
             </div>
         </div>

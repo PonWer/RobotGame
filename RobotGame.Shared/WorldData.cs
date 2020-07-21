@@ -9,6 +9,7 @@ namespace RobotGame.Shared
         public float Iron { get; set; }
         public float Copper { get; set; }
         public float Lithium { get; set; }
+        public float Health { get; set; }
     }
 
     public class Tree
