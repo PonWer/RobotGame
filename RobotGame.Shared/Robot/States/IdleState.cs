@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace RobotGame.Shared.Robot.States
 {
@@ -23,7 +24,16 @@ namespace RobotGame.Shared.Robot.States
                 return;
             }
 
-            inRobot.Battery_Current++;
+            if (ResourceManager.Instance.Energy > 1)
+            {
+                inRobot.Battery_Current += ResourceManager.Instance.EnergyTransferenceRatio * 1;
+                ResourceManager.Instance.Energy -= 1;
+            }
+            else
+            {
+                inRobot.Battery_Current += ResourceManager.Instance.EnergyGainedWithoutStoredEnergy;
+            }
+            
         }
 
         public override void OnStateLeave(Robot inRobot)

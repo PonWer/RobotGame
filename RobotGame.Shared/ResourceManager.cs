@@ -9,7 +9,8 @@ namespace RobotGame.Shared
 
 
         #region Basic Resources
-        public float Wood { get; set; }
+
+        public float Wood { get; set; } = 100;
 
         public float Iron { get; set; }
         public float Lithium { get; set; }
@@ -17,14 +18,17 @@ namespace RobotGame.Shared
 
         public int Scrap { get; set; }
 
-        public float Energy { get; set; }
-        public List<float> EnergyHistory { get; set; }
+        public double Energy { get; set; } = 150;
+        //public List<double> EnergyHistory { get; set; }
         #endregion
 
         #region Comsumption
 
         public int WoodsBurningForEnergy { get; set; }
-        public float EnergyGainedFromWood { get; set; } = 0.5f;
+        public double EnergyGainedFromWood { get; set; } = 0.5f;
+        public double EnergyTransferenceRatio { get; set; } = 0.9f;
+        public double EnergyGainedWithoutStoredEnergy { get; set; } = 0.1f;
+
 
         #endregion
 
@@ -40,13 +44,9 @@ namespace RobotGame.Shared
             Energy += WoodsBurningForEnergy * EnergyGainedFromWood;
             Wood -= WoodsBurningForEnergy;
 
-            var random = new Random();
-            Energy = random.Next(300);
-            Wood = random.Next(100);
-
-            EnergyHistory.Add(Energy);
-            if(EnergyHistory.Count > 10)
-                EnergyHistory.RemoveAt(0);
+            //EnergyHistory.Add(Energy);
+            //if(EnergyHistory.Count > 10)
+            //    EnergyHistory.RemoveAt(0);
 
         }
 

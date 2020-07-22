@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Blazored.LocalStorage;
+using Blazorise;
 using Blazorise.Charts;
 using Blazorise.Charts.Streaming;
 using Microsoft.AspNetCore.Components;
@@ -16,12 +17,7 @@ namespace RobotGame.Pages.Overview
 
         public LineChart<LiveDataPoint> horizontalLineChart;
 
-        Random random = new Random(DateTime.Now.Millisecond);
-
-
         string[] Labels = { "Red", "Blue", "Yellow", "Green", "Purple", "Orange" };
-        List<string> backgroundColors = new List<string> { ChartColor.FromRgba(255, 99, 132, 0.2f), ChartColor.FromRgba(54, 162, 235, 0.2f), ChartColor.FromRgba(255, 206, 86, 0.2f), ChartColor.FromRgba(75, 192, 192, 0.2f), ChartColor.FromRgba(153, 102, 255, 0.2f), ChartColor.FromRgba(255, 159, 64, 0.2f) };
-        List<string> borderColors = new List<string> { ChartColor.FromRgba(255, 99, 132, 1f), ChartColor.FromRgba(54, 162, 235, 1f), ChartColor.FromRgba(255, 206, 86, 1f), ChartColor.FromRgba(75, 192, 192, 1f), ChartColor.FromRgba(153, 102, 255, 1f), ChartColor.FromRgba(255, 159, 64, 1f) };
 
         public struct LiveDataPoint
         {
@@ -34,28 +30,42 @@ namespace RobotGame.Pages.Overview
         {
             Title = new
             {
-                Display = true,
+                Display = false,
                 Text = "Line chart (horizontal scroll) sample"
+            },
+            Legend = new 
+            {
+                Display = false
+            },
+            gridLines = new
+            {
+                display = false
             },
             Scales = new
             {
                 YAxes = new object[]
                 {
-                new {
-                    ScaleLabel = new {
-                    Display = true, LabelString = "value" }
-                }
+                    new{
+                        Ticks = new
+                        {
+                            beginAtZero = true
+                        }
+                    }
+                },
+                XAxes = new object[]
+                {
+                    new{
+                        display = false
+                    }
                 }
             },
             Tooltips = new
             {
-                Mode = "nearest",
-                Intersect = false
+                Enabled = false
             },
             Hover = new
             {
-                Mode = "nearest",
-                Intersect = false
+                Enabled = false
             }
         };
 
@@ -74,7 +84,6 @@ namespace RobotGame.Pages.Overview
             where TModel : ChartModel
         {
             await chart.Clear();
-
             await chart.AddLabelsDatasetsAndUpdate(Labels, getDataSets.Select(x => x.Invoke()).ToArray());
         }
 
@@ -84,11 +93,12 @@ namespace RobotGame.Pages.Overview
             {
                 Data = new List<LiveDataPoint>(),
                 Label = "Energy History",
-                BackgroundColor = backgroundColors[0],
-                BorderColor = borderColors[0],
+                BackgroundColor = ChartColor.FromRgba(255, 99, 132, 0.2f),
+                BorderColor = ChartColor.FromRgba(255, 99, 132, 1f),
                 Fill = false,
                 LineTension = 0,
-                BorderDash = new List<int> { },
+                BorderWidth = 10,
+                BorderDash = new List<int> {},
             };
         }
 
@@ -99,7 +109,6 @@ namespace RobotGame.Pages.Overview
                 X = DateTime.Now,
                 Y = ResourceManager.Instance.Energy,
             };
-
             return Task.CompletedTask;
         }
     }

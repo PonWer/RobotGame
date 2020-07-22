@@ -8,10 +8,10 @@
 <h5>Scrap: @Game.ResourceManager.Scrap</h5>
 <h5>Wood: @Game.ResourceManager.Wood</h5>
 
-<LineChart @ref="horizontalLineChart" TItem="LiveDataPoint" OptionsObject="@horizontalLineChartOptions">
-    <ChartStreaming TItem="LiveDataPoint"
-                    Options="new ChartStreamingOptions { Delay = 1000 }"
-                    Refreshed="@OnHorizontalLineRefreshed" />
-</LineChart>
-
-
+<div style="width: 200px; height: 200px;">
+    <LineChart @ref="horizontalLineChart" TItem="LiveDataPoint" OptionsObject="@horizontalLineChartOptions">
+        <ChartStreaming TItem="LiveDataPoint"
+                        Options="new ChartStreamingOptions { Delay = 1000 }"
+                        Refreshed="@OnHorizontalLineRefreshed" />
+    </LineChart>
+</div>
