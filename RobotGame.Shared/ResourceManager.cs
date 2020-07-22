@@ -1,4 +1,7 @@
-﻿namespace RobotGame.Shared
+﻿using System;
+using System.Collections.Generic;
+
+namespace RobotGame.Shared
 {
     public partial class ResourceManager : IGameLoop
     {
@@ -15,6 +18,7 @@
         public int Scrap { get; set; }
 
         public float Energy { get; set; }
+        public List<float> EnergyHistory { get; set; }
         #endregion
 
         #region Comsumption
@@ -35,6 +39,14 @@
 
             Energy += WoodsBurningForEnergy * EnergyGainedFromWood;
             Wood -= WoodsBurningForEnergy;
+
+            var random = new Random();
+            Energy = random.Next(300);
+            Wood = random.Next(100);
+
+            EnergyHistory.Add(Energy);
+            if(EnergyHistory.Count > 10)
+                EnergyHistory.RemoveAt(0);
 
         }
 

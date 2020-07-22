@@ -29,13 +29,17 @@ namespace RobotGame
                 .AddBootstrapProviders()
                 .AddFontAwesomeIcons();
 
-            builder.RootComponents.Add<App>("app");
+            builder
+                .RootComponents
+                .Add<App>("app");
 
             builder
                 .Services
                 .AddBlazoredLocalStorage(config => config.JsonSerializerOptions.WriteIndented = true);
             
-            builder.Services.AddSingleton<Game>();
+            builder
+                .Services
+                .AddSingleton<Game>();
 
             var host = builder.Build();
 
