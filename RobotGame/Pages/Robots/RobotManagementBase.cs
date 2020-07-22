@@ -15,7 +15,6 @@ namespace RobotGame.Pages.Robots
     {
         public void AddRobot(MouseEventArgs e)
         {
-            var rand = new Random();
             var robot = new Robot()
             {
                 Health_Max = 100,

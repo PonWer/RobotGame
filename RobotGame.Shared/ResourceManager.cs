@@ -37,8 +37,7 @@ namespace RobotGame.Shared
         {
             if (Wood - WoodsBurningForEnergy < 0)
             {
-                //Stop burning?
-                WoodsBurningForEnergy = 0;
+                return;
             }
 
             Energy += WoodsBurningForEnergy * EnergyGainedFromWood;

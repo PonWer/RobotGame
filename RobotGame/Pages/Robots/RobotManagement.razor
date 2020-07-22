@@ -24,73 +24,72 @@
                          style="width: @robot.BatteryPercentage">@robot.BatteryPercentage</div>
                     </div>
                 </Column>
-            <Column ColumnSize="ColumnSize.Is6">
-                <span class="oi oi-heart" aria-hidden="true">Health:</span>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
-                         role="progressbar"
-                         aria-valuenow="@robot.HealthCurrent"
-                         aria-valuemin="0"
-                         aria-valuemax="@robot.Health_Max"
-                         style="width: @robot.HealthPercentage">@robot.HealthPercentage</div>
-                </div>
-            </Column>
+                <Column ColumnSize="ColumnSize.Is6">
+                    <span class="oi oi-heart" aria-hidden="true">Health:</span>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
+                             role="progressbar"
+                             aria-valuenow="@robot.HealthCurrent"
+                             aria-valuemin="0"
+                             aria-valuemax="@robot.Health_Max"
+                             style="width: @robot.HealthPercentage">@robot.HealthPercentage</div>
+                        </div>
+                    </Column>
 
-            </Row>
-            <div class="grid-container">
-                <div class="grid-item">
-                    Job:
-                    <select @onchange="@robot.OnSelectedJobChange" value="@robot.CurrentState.Name()">
-                        @foreach (var template in AllJobs)
-                        {
-                            <option value=@template>@template</option>
-                        }
-                    </select>
-                    Zone:
-                    <select @onchange="@robot.OnSelectedZoneChange" value="@robot.CurrentZone.Name">
-                        @foreach (var zone in WorldManager.Instance.AllZoneNames)
-                        {
-                            <option value=@zone>@zone</option>
-                        }
-                    </select>
-                    <Check TValue="bool" @bind-Checked="@robot.ReturnToPreviousStateOnMaxBattery">Repeat Job:</Check>
-                </div>
-                <div class="grid-item">
-                    @if (robot.CurrentProgress != null)
-                    {
-                        <span class="oi oi-person" aria-hidden="true"></span>
-                        @foreach (var spot in robot.CurrentProgress.PlaceOccupied)
-                        {
-                            @if (spot)
+                </Row>
+                <Row style="border: 1px solid black; margin-left: 0px; margin-right: 0px;">
+                    <Column ColumnSize="ColumnSize.Is4" style="border: 1px solid black">
+                        Job:<select @onchange="@robot.OnSelectedJobChange" value="@robot.CurrentState.Name()">
+                            @foreach (var template in AllJobs)
                             {
-                                switch (robot.CurrentProgress.ObstacleType)
+                                <option value=@template>@template</option>
+                            }
+                        </select>
+                        Zone:<select @onchange="@robot.OnSelectedZoneChange" value="@robot.CurrentZone.Name">
+                            @foreach (var zone in WorldManager.Instance.AllZoneNames)
+                            {
+                                <option value=@zone>@zone</option>
+                            }
+                        </select><Check TValue="bool" @bind-Checked="@robot.ReturnToPreviousStateOnMaxBattery">Repeat Job:</Check>
+                    </Column>
+                    <Column ColumnSize="ColumnSize.Is6">
+                        @if (robot.CurrentProgress != null)
+                        {
+                            <span class="oi oi-person" aria-hidden="true"></span>
+                            @foreach (var spot in robot.CurrentProgress.PlaceOccupied)
+                            {
+                                @if (spot)
                                 {
-                                    case JobProgress.Obstacle.Tree:
-                                        <img src="images/Tree_LowRes.jpg" alt="Image" />
-                                        break;
-                                    case JobProgress.Obstacle.OreVein:
-                                        <img src="images/MineOre_LowRes.jpg" alt="Image" />
-                                        break;
-                                    case JobProgress.Obstacle.Enemy:
-                                        <span>enemy</span>
-                                        break;
-                                    default:
-                                        <span>ERROR MISSING IMAGE</span>
-                                        break;
+                                    switch (robot.CurrentProgress.ObstacleType)
+                                    {
+                                        case JobProgress.Obstacle.Tree:
+                                            <img src="images/Tree_LowRes.jpg" alt="Image" />
+                                            break;
+                                        case JobProgress.Obstacle.OreVein:
+                                            <img src="images/MineOre_LowRes.jpg" alt="Image" />
+                                            break;
+                                        case JobProgress.Obstacle.Enemy:
+                                            <span>enemy</span>
+                                            break;
+                                        default:
+                                            <span>ERROR MISSING IMAGE</span>
+                                            break;
+                                    }
+                                }
+                                else
+                                {
+                                    <span>_</span>
                                 }
                             }
-                            else
-                            {
-                                <span>_</span>
-                            }
                         }
-                    }
-                    else
-                    {
-                        <span>No progress</span>
-                    }
-                </div>
+                        else
+                        {
+                            <span>No progress</span>
+                        }
+                    </Column>
+
+
+                </Row>
             </div>
-        </div>
-        <br />
-    }
+            <br />
+        }

@@ -15,9 +15,8 @@ namespace RobotGame.Pages.Overview
     {
         [Inject] public ISyncLocalStorageService LocalStorage { get; set; }
 
-        public LineChart<LiveDataPoint> horizontalLineChart;
-
-        string[] Labels = { "Red", "Blue", "Yellow", "Green", "Purple", "Orange" };
+        public LineChart<LiveDataPoint> EnergyChart;
+        public LineChart<LiveDataPoint> WoodChart;
 
         public struct LiveDataPoint
         {
@@ -26,7 +25,7 @@ namespace RobotGame.Pages.Overview
             public object Y { get; set; }
         }
 
-        public object horizontalLineChartOptions = new
+        public object ChartOptions = new
         {
             Title = new
             {
@@ -74,7 +73,7 @@ namespace RobotGame.Pages.Overview
             if (firstRender)
             {
                 await Task.WhenAll(
-                    HandleRedraw(horizontalLineChart, GetLineChartDataset1));
+                    HandleRedraw(EnergyChart, GetDataSetEnergy));
             }
         }
 
@@ -84,10 +83,10 @@ namespace RobotGame.Pages.Overview
             where TModel : ChartModel
         {
             await chart.Clear();
-            await chart.AddLabelsDatasetsAndUpdate(Labels, getDataSets.Select(x => x.Invoke()).ToArray());
+            await chart.AddLabelsDatasetsAndUpdate(new[]{"","","","","","","","","","","","","","",""}, getDataSets.Select(x => x.Invoke()).ToArray());
         }
 
-        public LineChartDataset<LiveDataPoint> GetLineChartDataset1()
+        public LineChartDataset<LiveDataPoint> GetDataSetEnergy()
         {
             return new LineChartDataset<LiveDataPoint>
             {
@@ -98,16 +97,40 @@ namespace RobotGame.Pages.Overview
                 Fill = false,
                 LineTension = 0,
                 BorderWidth = 10,
-                BorderDash = new List<int> {},
+                BorderDash = new List<int> { },
+            };
+        }
+        public LineChartDataset<LiveDataPoint> GetDataSetWood()
+        {
+            return new LineChartDataset<LiveDataPoint>
+            {
+                Data = new List<LiveDataPoint>(),
+                Label = "Energy History",
+                BackgroundColor = ChartColor.FromRgba(255, 99, 132, 0.2f),
+                BorderColor = ChartColor.FromRgba(255, 99, 132, 1f),
+                Fill = false,
+                LineTension = 0,
+                BorderWidth = 10,
+                BorderDash = new List<int> { },
             };
         }
 
-        public Task OnHorizontalLineRefreshed(ChartStreamingData<LiveDataPoint> data)
+        public Task OnHorizontalLineRefreshedEnergy(ChartStreamingData<LiveDataPoint> data)
         {
             data.Value = new LiveDataPoint
             {
                 X = DateTime.Now,
                 Y = ResourceManager.Instance.Energy,
+            };
+            return Task.CompletedTask;
+        }
+
+        public Task OnHorizontalLineRefreshedWood(ChartStreamingData<LiveDataPoint> data)
+        {
+            data.Value = new LiveDataPoint
+            {
+                X = DateTime.Now,
+                Y = ResourceManager.Instance.Wood,
             };
             return Task.CompletedTask;
         }

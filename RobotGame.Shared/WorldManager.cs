@@ -37,7 +37,7 @@ namespace RobotGame.Shared
                     Tree = new Tree()
                     {
                         Health = 6,
-                        Quantity = 3
+                        Quantity = 5
                     }
                 },
 
@@ -59,8 +59,8 @@ namespace RobotGame.Shared
 
                     Tree = new Tree()
                     {
-                        Health = 2,
-                        Quantity = 5
+                        Health = 10,
+                        Quantity = 20
                     }
                 },
             };
