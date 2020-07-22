@@ -20,20 +20,24 @@ namespace RobotGame.Shared.Robot.States
                 {
                     inRobot.ChangeState(inRobot.PreviousState);
                 }
-
-                return;
-            }
-
-            if (ResourceManager.Instance.Energy > 1)
-            {
-                inRobot.Battery_Current += ResourceManager.Instance.EnergyTransferenceRatio * 1;
-                ResourceManager.Instance.Energy -= 1;
             }
             else
             {
-                inRobot.Battery_Current += ResourceManager.Instance.EnergyGainedWithoutStoredEnergy;
+                if (ResourceManager.Instance.Energy > 1)
+                {
+                    inRobot.Battery_Current += ResourceManager.Instance.EnergyTransferenceRatio * 1;
+                    ResourceManager.Instance.Energy -= 1;
+                }
+                else
+                {
+                    inRobot.Battery_Current += ResourceManager.Instance.EnergyGainedWithoutStoredEnergy;
+                }
             }
-            
+
+            if (inRobot.HealthCurrent < inRobot.Health_Max)
+            {
+                inRobot.HealthCurrent += 1;
+            }
         }
 
         public override void OnStateLeave(Robot inRobot)
