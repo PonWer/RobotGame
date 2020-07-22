@@ -15,8 +15,15 @@
         <div style="align-content: space-evenly; align-items: center; border: 1px solid black">
             <div>
                 <span class="oi oi-power-standby" aria-hidden="true"></span>
-                <h4 class="navbar-brand">Energy: @robot.Battery_Current/@robot.Battery_Max</h4>
-                
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" 
+                         role="progressbar" 
+                         aria-valuenow="@robot.Battery_Current" 
+                         aria-valuemin="0" 
+                         aria-valuemax="@robot.Battery_Max" 
+                         style="width: @robot.BatteryPercentage"></div>
+                </div>
+
                 <span class="oi oi-pencil" aria-hidden="true"></span>
                 <h4 class="navbar-brand">Health: @robot.HealthPercentage% (@robot.HealthCurrent/@robot.Health_Max)</h4>
             </div>

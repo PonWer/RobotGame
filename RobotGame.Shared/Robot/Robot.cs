@@ -19,6 +19,7 @@ namespace RobotGame.Shared.Robot
 
         public double Battery_Current { get; set; }
         public double Battery_Max { get; set; }
+        public string BatteryPercentage => $"{(int) (Battery_Current / Battery_Max * 100)}%";
         public bool ReturnToPreviousStateOnMaxBattery;
 
         public int AttackBonus { get; set; }
