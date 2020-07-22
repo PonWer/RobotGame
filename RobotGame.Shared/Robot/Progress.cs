@@ -63,54 +63,26 @@ namespace RobotGame.Shared.Robot
         }
 
 
-
-        public bool AttackAndMove(double inDamage, out double DamageTaken, out Obstacle outObstacle)
+        public void Move()
         {
-            outObstacle = Path[0];
-            DamageTaken = 0;
+            StepsTaken++;
+            Path.RemoveAt(0);
+            Path.Add(GetNextPathItem());
 
-            if (Path[0] == Obstacle.Empty)
+            switch (Path[0])
             {
-                StepsTaken++;
-                Path.RemoveAt(0);
-                Path.Add(GetNextPathItem());
-                return false;
+                case Obstacle.Empty:
+                    break;
+                case Obstacle.Tree:
+                    ClosestObjectHealth = CurrentZone.Tree.Health;
+                    break;
+                case Obstacle.OreVein:
+                    ClosestObjectHealth = CurrentZone.OreVein.Health;
+                    break;
+                case Obstacle.Enemy:
+                    ClosestObjectHealth = CurrentZone.EnemyHealth;
+                    break;
             }
-
-            if (ClosestObjectHealth <= 0 && outObstacle != Obstacle.Empty)
-            {
-                //New obstacle
-                switch (outObstacle)
-                {
-                    case Obstacle.Empty:
-                        break;
-                    case Obstacle.Tree:
-                        ClosestObjectHealth = CurrentZone.Tree.Health;
-                        break;
-                    case Obstacle.OreVein:
-                        ClosestObjectHealth = CurrentZone.OreVein.Health;
-                        break;
-                    case Obstacle.Enemy:
-                        ClosestObjectHealth = CurrentZone.EnemyHealth;
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException(nameof(outObstacle), outObstacle, null);
-                }
-            }
-
-            ClosestObjectHealth -= inDamage;
-
-            if (outObstacle == Obstacle.Enemy)
-            {
-                DamageTaken = CurrentZone.EnemyDamage;
-            }
-
-            if (ClosestObjectHealth <= 0)
-            {
-                Path[0] = Obstacle.Empty;
-                return true;
-            }
-            return false;
         }
     }
 }

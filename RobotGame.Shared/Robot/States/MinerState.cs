@@ -16,7 +16,7 @@ namespace RobotGame.Shared.Robot.States
 
         public override void OnStateUpdate(Robot inRobot)
         {
-            if (inRobot.Battery_Current <= 0)
+            if (inRobot.Battery_Current <= 0 || inRobot.HealthCurrent <= 0)
             {
                 inRobot.ChangeState(IdleState.Instance);
                 return;
@@ -27,35 +27,11 @@ namespace RobotGame.Shared.Robot.States
                 return;
             }
 
-            inRobot.Battery_Current--;
-            var obstacleOnPathDestroyed =
-                inRobot.CurrentProgress.AttackAndMove(inRobot.AttackDamage, out var damageTaken, out var obstacle);
-            inRobot.HealthCurrent -= damageTaken;
+            inRobot.ProgressTheProgress();
 
-            if (obstacleOnPathDestroyed)
+            if (inRobot.Frame.Storage.IsFull)
             {
-                switch (obstacle)
-                {
-                    case Progress.Obstacle.Empty:
-                        break;
-                    case Progress.Obstacle.Tree:
-                        inRobot.Frame.Storage.Wood += inRobot.CurrentZone.Tree.Quantity;
-                        break;
-                    case Progress.Obstacle.OreVein:
-                        inRobot.Frame.Storage.Iron += inRobot.CurrentZone.OreVein.Iron;
-                        inRobot.Frame.Storage.Copper += inRobot.CurrentZone.OreVein.Copper;
-                        inRobot.Frame.Storage.Lithium += inRobot.CurrentZone.OreVein.Lithium;
-                        break;
-                    case Progress.Obstacle.Enemy:
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-
-                if (inRobot.Frame.Storage.IsFull)
-                {
-                    inRobot.ChangeState(IdleState.Instance);
-                }
+                inRobot.ChangeState(IdleState.Instance);
             }
         }
 

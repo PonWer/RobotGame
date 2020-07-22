@@ -55,5 +55,55 @@ namespace RobotGame.Shared.Robot
             ChangeState(CurrentState);
         }
 
+        public void AddLootToStorage(Progress.Obstacle inObstacle)
+        {
+            switch (inObstacle)
+            {
+                case Progress.Obstacle.Empty:
+                    break;
+                case Progress.Obstacle.Tree:
+                    Frame.Storage.Wood += CurrentZone.Tree.Quantity;
+                    break;
+                case Progress.Obstacle.OreVein:
+                    Frame.Storage.Iron += CurrentZone.OreVein.Iron;
+                    Frame.Storage.Copper += CurrentZone.OreVein.Copper;
+                    Frame.Storage.Lithium += CurrentZone.OreVein.Lithium;
+                    break;
+                case Progress.Obstacle.Enemy:
+                    //Todo
+                    Frame.Storage.Scrap += CurrentZone.Tree.Quantity;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        public void ProgressTheProgress()
+        {
+            if (CurrentProgress.Path[0] == Progress.Obstacle.Empty)
+            {
+                CurrentProgress.Move();
+                Battery_Current -= 0.1f;
+                return;
+            }
+
+            Battery_Current -= 0.5f;
+            if (CurrentProgress.Path[0] == Progress.Obstacle.Enemy)
+            {
+                var damage = AttackDamage - CurrentZone.EnemyDefense;
+                CurrentProgress.ClosestObjectHealth -= damage > 0 ? damage : 0;
+                HealthCurrent -= CurrentZone.EnemyDamage;
+            }
+            else
+            {
+                CurrentProgress.ClosestObjectHealth -= 1;
+            }
+
+            if (CurrentProgress.ClosestObjectHealth < 0)
+            {
+                AddLootToStorage(CurrentProgress.Path[0]);
+                CurrentProgress.Path[0] = Progress.Obstacle.Empty;
+            }
+        }
     }
 }

@@ -6,7 +6,7 @@
 <Row style="border: 1px solid black; margin-left: 0px; margin-right: 0px;">
     <Column ColumnSize="ColumnSize.Is3">
         Burn Wood for energy: (Energy gained per Wood: @Game.ResourceManager.EnergyGainedFromWood)
-        <input @bind="Game.ResourceManager.WoodsBurningForEnergy" type="number" />
+        <input @bind="Game.ResourceManager.WoodsBurningForEnergy" type="number" min="0"/>
     </Column>
     <Column ColumnSize="ColumnSize.Is8">
         <LineChart @ref="EnergyChart" TItem="LiveDataPoint" OptionsObject="@ChartOptions" style="height: 100%; width: 100%">
