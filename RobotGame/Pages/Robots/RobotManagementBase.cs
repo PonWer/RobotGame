@@ -18,8 +18,8 @@ namespace RobotGame.Pages.Robots
             var rand = new Random();
             var robot = new Robot()
             {
-                Health_Max = rand.Next(100),
-                HealthCurrent = rand.Next(100),
+                Health_Max = 100,
+                HealthCurrent = 75,
                 Battery_Max = 100,
                 Battery_Current = 100,
                 CurrentZone = WorldManager.Instance.Zones[0]

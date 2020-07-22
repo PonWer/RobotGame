@@ -14,18 +14,14 @@ namespace RobotGame.Shared.Robot
         public Zone CurrentZone { get; set; }
         public JobProgress CurrentProgress { get; set; }
         public Frame Frame { get; set; }
-        public int HealthCurrent { get; set; }
-        public int Health_Max { get; set; }
+        public double HealthCurrent { get; set; }
+        public double Health_Max { get; set; }
 
         public double Battery_Current { get; set; }
         public double Battery_Max { get; set; }
-        public string BatteryPercentage => $"{(int) (Battery_Current / Battery_Max * 100)}%";
+        public string BatteryPercentage => $"{(int)(Battery_Current / Battery_Max * 100)}%";
         public bool ReturnToPreviousStateOnMaxBattery;
-
-        public int AttackBonus { get; set; }
-
-
-        public int HealthPercentage => (int)(100 * HealthCurrent / (double)Health_Max);
+        public string HealthPercentage => $"{(int)(HealthCurrent / Health_Max * 100)}%";
 
         public void PreRenderUpdate()
         {
