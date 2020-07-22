@@ -1,5 +1,6 @@
 ﻿@page "/robotmanagement"
 @using RobotGame.Shared.Robot
+@using Progress = RobotGame.Shared.Robot.Progress
 @inherits RobotManagementBase
 
 <h3>RobotManagement</h3>
@@ -52,34 +53,32 @@
                             }
                         </select><Check TValue="bool" @bind-Checked="@robot.ReturnToPreviousStateOnMaxBattery">Repeat Job:</Check>
                     </Column>
-                    <Column ColumnSize="ColumnSize.Is6">
+                    <Column ColumnSize="ColumnSize.Is8">
                         @if (robot.CurrentProgress != null)
                         {
                             <span class="oi oi-person" aria-hidden="true"></span>
-                            @foreach (var spot in robot.CurrentProgress.PlaceOccupied)
+                            @foreach (var spot in robot.CurrentProgress.Path)
                             {
-                                @if (spot)
+
+                                switch (spot)
                                 {
-                                    switch (robot.CurrentProgress.ObstacleType)
-                                    {
-                                        case JobProgress.Obstacle.Tree:
-                                            <img src="images/Tree_LowRes.jpg" alt="Image" />
-                                            break;
-                                        case JobProgress.Obstacle.OreVein:
-                                            <img src="images/MineOre_LowRes.jpg" alt="Image" />
-                                            break;
-                                        case JobProgress.Obstacle.Enemy:
-                                            <span>enemy</span>
-                                            break;
-                                        default:
-                                            <span>ERROR MISSING IMAGE</span>
-                                            break;
-                                    }
+                                    case Progress.Obstacle.Tree:
+                                        <img src="images/Tree_LowRes.jpg" alt="Image" />
+                                        break;
+                                    case Progress.Obstacle.OreVein:
+                                        <img src="images/MineOre_LowRes.jpg" alt="Image" />
+                                        break;
+                                    case Progress.Obstacle.Enemy:
+                                        <img src="images/Enemy_LowRes.jpg" alt="Image" />
+                                        break;
+                                    case Progress.Obstacle.Empty:
+                                        <img src="images/Empty_LowRes.jpg" alt="Image" />
+                                        break;
+                                    default:
+                                        <span>ERROR MISSING IMAGE</span>
+                                        break;
                                 }
-                                else
-                                {
-                                    <span>_</span>
-                                }
+
                             }
                         }
                         else

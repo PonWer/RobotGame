@@ -25,7 +25,7 @@ namespace RobotGame.Shared
         #region Comsumption
 
         public int WoodsBurningForEnergy { get; set; }
-        public double EnergyGainedFromWood { get; set; } = 0.5f;
+        public double EnergyGainedFromWood { get; set; } = 2.5f;
         public double EnergyTransferenceRatio { get; set; } = 0.9f;
         public double EnergyGainedWithoutStoredEnergy { get; set; } = 0.1f;
 

@@ -12,8 +12,10 @@ namespace RobotGame.Shared.Robot
         public BaseState PreviousState { get; private set; }
 
         public Zone CurrentZone { get; set; }
-        public JobProgress CurrentProgress { get; set; }
+        public Progress CurrentProgress { get; set; }
         public Frame Frame { get; set; }
+
+        public double AttackDamage { get; set; } = 1.2f;
         public double HealthCurrent { get; set; }
         public double Health_Max { get; set; }
 

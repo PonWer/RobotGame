@@ -11,7 +11,7 @@ namespace RobotGame.Shared.Robot.States
             Console.WriteLine($"Entering State {nameof(MinerState)}");
 
             if (inRobot.CurrentZone.Name != "Home")
-                inRobot.CurrentProgress = new JobProgress(JobProgress.Obstacle.OreVein, inRobot.CurrentZone.OreVein.Health);
+                inRobot.CurrentProgress = new Progress(5,80,15,inRobot.CurrentZone);
         }
 
         public override void OnStateUpdate(Robot inRobot)
@@ -28,12 +28,28 @@ namespace RobotGame.Shared.Robot.States
             }
 
             inRobot.Battery_Current--;
-
-            if (inRobot.CurrentProgress.AttackAndMove(1))
+            var obstacleOnPathDestroyed =
+                inRobot.CurrentProgress.AttackAndMove(inRobot.AttackDamage, out var damageTaken, out var obstacle);
+            inRobot.HealthCurrent -= damageTaken;
+            if (obstacleOnPathDestroyed)
             {
-                ResourceManager.Instance.Iron += inRobot.CurrentZone.OreVein.Iron;
-                ResourceManager.Instance.Copper += inRobot.CurrentZone.OreVein.Copper;
-                ResourceManager.Instance.Lithium += inRobot.CurrentZone.OreVein.Lithium;
+                switch (obstacle)
+                {
+                    case Progress.Obstacle.Empty:
+                        break;
+                    case Progress.Obstacle.Tree:
+                        ResourceManager.Instance.Wood += inRobot.CurrentZone.Tree.Quantity;
+                        break;
+                    case Progress.Obstacle.OreVein:
+                        ResourceManager.Instance.Iron += inRobot.CurrentZone.OreVein.Iron;
+                        ResourceManager.Instance.Copper += inRobot.CurrentZone.OreVein.Copper;
+                        ResourceManager.Instance.Lithium += inRobot.CurrentZone.OreVein.Lithium;
+                        break;
+                    case Progress.Obstacle.Enemy:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
             }
         }
 
