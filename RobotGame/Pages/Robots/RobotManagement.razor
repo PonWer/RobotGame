@@ -86,9 +86,16 @@
                             <span>No progress</span>
                         }
                     </Column>
-
-
                 </Row>
+                <div style="border: 1px solid black">
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: @robot.Frame.Storage.WoodPercentage" aria-valuenow="@robot.Frame.Storage.Wood" aria-valuemin="0" aria-valuemax="@robot.Frame.Storage.MaxStorage">Wood</div>
+                        <div class="progress-bar bg-success" role="progressbar" style="width: @robot.Frame.Storage.IronPercentage" aria-valuenow="@robot.Frame.Storage.Iron" aria-valuemin="0" aria-valuemax="@robot.Frame.Storage.MaxStorage">Iron</div>
+                        <div class="progress-bar bg-warning" role="progressbar" style="width: @robot.Frame.Storage.CopperPercentage" aria-valuenow="@robot.Frame.Storage.Copper" aria-valuemin="0" aria-valuemax="@robot.Frame.Storage.MaxStorage">Copper</div>
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: @robot.Frame.Storage.LithiumPercentage" aria-valuenow="@robot.Frame.Storage.Lithium" aria-valuemin="0" aria-valuemax="@robot.Frame.Storage.MaxStorage">Lithium</div>
+                        <div class="progress-bar bg-info" role="progressbar" style="width: @robot.Frame.Storage.ScrapPercentage" aria-valuenow="@robot.Frame.Storage.Scrap" aria-valuemin="0" aria-valuemax="@robot.Frame.Storage.MaxStorage">Scrap</div>
+                    </div>
+                </div>
             </div>
             <br />
         }

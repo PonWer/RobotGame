@@ -39,17 +39,22 @@ namespace RobotGame.Shared.Robot.States
                     case Progress.Obstacle.Empty:
                         break;
                     case Progress.Obstacle.Tree:
-                        ResourceManager.Instance.Wood += inRobot.CurrentZone.Tree.Quantity;
+                        inRobot.Frame.Storage.Wood += inRobot.CurrentZone.Tree.Quantity;
                         break;
                     case Progress.Obstacle.OreVein:
-                        ResourceManager.Instance.Iron += inRobot.CurrentZone.OreVein.Iron;
-                        ResourceManager.Instance.Copper += inRobot.CurrentZone.OreVein.Copper;
-                        ResourceManager.Instance.Lithium += inRobot.CurrentZone.OreVein.Lithium;
+                        inRobot.Frame.Storage.Iron += inRobot.CurrentZone.OreVein.Iron;
+                        inRobot.Frame.Storage.Copper += inRobot.CurrentZone.OreVein.Copper;
+                        inRobot.Frame.Storage.Lithium += inRobot.CurrentZone.OreVein.Lithium;
                         break;
                     case Progress.Obstacle.Enemy:
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
+                }
+
+                if (inRobot.Frame.Storage.IsFull)
+                {
+                    inRobot.ChangeState(IdleState.Instance);
                 }
             }
         }

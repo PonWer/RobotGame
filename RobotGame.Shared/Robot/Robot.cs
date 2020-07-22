@@ -13,7 +13,7 @@ namespace RobotGame.Shared.Robot
 
         public Zone CurrentZone { get; set; }
         public Progress CurrentProgress { get; set; }
-        public Frame Frame { get; set; }
+        public Frame Frame { get; set; } = new Frame();
 
         public double AttackDamage { get; set; } = 1.2f;
         public double HealthCurrent { get; set; }

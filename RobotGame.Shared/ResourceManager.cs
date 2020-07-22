@@ -10,11 +10,11 @@ namespace RobotGame.Shared
 
         #region Basic Resources
 
-        public float Wood { get; set; } = 100;
+        public double Wood { get; set; } = 100;
 
-        public float Iron { get; set; }
-        public float Lithium { get; set; }
-        public float Copper { get; set; }
+        public double Iron { get; set; }
+        public double Lithium { get; set; }
+        public double Copper { get; set; }
 
         public int Scrap { get; set; }
 

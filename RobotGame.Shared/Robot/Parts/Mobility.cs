@@ -6,6 +6,6 @@ namespace RobotGame.Shared.Robot.Parts
 {
     public class Mobility
     {
-        public float Speed { get; set; }
+        public double Speed { get; set; }
     }
 }

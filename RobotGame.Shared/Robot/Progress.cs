@@ -33,7 +33,7 @@ namespace RobotGame.Shared.Robot
             Path = new List<Obstacle>();
             for (var i = 0; i < 20; i++)
             {
-                Path.Add(GetNextPathItem());
+                Path.Add(Obstacle.Empty);
             }
         }
 

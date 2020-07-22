@@ -6,10 +6,10 @@ namespace RobotGame.Shared
 {
     public class OreVein
     {
-        public float Iron { get; set; }
-        public float Copper { get; set; }
-        public float Lithium { get; set; }
-        public float Health { get; set; }
+        public double Iron { get; set; }
+        public double Copper { get; set; }
+        public double Lithium { get; set; }
+        public double Health { get; set; }
     }
 
     public class Tree

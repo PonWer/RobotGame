@@ -8,6 +8,7 @@ namespace RobotGame.Shared.Robot.States
         public override void OnStateEnter(Robot inRobot)
         {
             Console.WriteLine($"Entering State {nameof(IdleState)}");
+            inRobot.Frame.Storage.Empty();
         }
 
         public static IdleState Instance { get; } = new IdleState();
