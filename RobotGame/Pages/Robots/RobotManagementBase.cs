@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using RobotGame.Shared;
+using RobotGame.Shared.Managers;
 using RobotGame.Shared.Robot;
 using RobotGame.Shared.Robot.States;
 

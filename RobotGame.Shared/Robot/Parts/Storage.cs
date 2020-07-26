@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using RobotGame.Shared.Managers;
 
 namespace RobotGame.Shared.Robot.Parts
 {
-    public class Storage
+    public class Storage : ComponentBase
     {
         public double MaxStorage { get; set; } = 100;
         public bool IsFull => (Wood + Iron + Lithium + Copper + Scrap) >= MaxStorage;
@@ -26,11 +27,7 @@ namespace RobotGame.Shared.Robot.Parts
 
         public void Empty()
         {
-            ResourceManager.Instance.Wood += Wood;
-            ResourceManager.Instance.Iron += Iron;
-            ResourceManager.Instance.Lithium += Lithium;
-            ResourceManager.Instance.Copper += Copper;
-            ResourceManager.Instance.Scrap += Scrap;
+            ResourceManager.Instance.AddResource(Wood,Copper,Iron,Lithium,Scrap);
 
             Wood = 0;
             Iron = 0;
@@ -39,5 +36,6 @@ namespace RobotGame.Shared.Robot.Parts
             Scrap = 0;
         }
 
+        public override ComponentType GetComponentType() => ComponentType.Storage;
     }
 }

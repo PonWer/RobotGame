@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RobotGame", "RobotGame\Robo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RobotGame.Shared", "RobotGame.Shared\RobotGame.Shared.csproj", "{E95D843C-CED3-49AC-901C-132F7CEE30FD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RobotGame.Shared.Test", "RobotGame.Shared.Test\RobotGame.Shared.Test.csproj", "{ED932C45-BB08-4AF5-B6A9-094FB1A60BA8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{E95D843C-CED3-49AC-901C-132F7CEE30FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E95D843C-CED3-49AC-901C-132F7CEE30FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E95D843C-CED3-49AC-901C-132F7CEE30FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED932C45-BB08-4AF5-B6A9-094FB1A60BA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED932C45-BB08-4AF5-B6A9-094FB1A60BA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED932C45-BB08-4AF5-B6A9-094FB1A60BA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED932C45-BB08-4AF5-B6A9-094FB1A60BA8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

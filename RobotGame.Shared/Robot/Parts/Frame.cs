@@ -4,7 +4,7 @@ using System.Text;
 
 namespace RobotGame.Shared.Robot.Parts
 {
-    public class Frame
+    public class Frame : ComponentBase
     {
         
         public List<Arm> Arms { get; set; }
@@ -14,8 +14,8 @@ namespace RobotGame.Shared.Robot.Parts
 
         #region Stats
         public int ArmSlots { get; set; }
-        public double EnergyConsumption { get; set; }
-
         #endregion
+
+        public override ComponentType GetComponentType() => ComponentType.Frame;
     }
 }

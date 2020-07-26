@@ -7,6 +7,7 @@ using Blazorise;
 using Blazorise.Charts;
 using Microsoft.AspNetCore.Components;
 using RobotGame.Shared;
+using RobotGame.Shared.Managers;
 
 namespace RobotGame.Pages.Overview
 {

@@ -1,21 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.IO;
+using RobotGame.Shared.Robot.Parts;
 
-namespace RobotGame.Shared
+namespace RobotGame.Shared.Managers
 {
-    public class RobotManager : IGameLoop
+    public class RobotManager : ManagerBase
     {
         public static RobotManager Instance { get; } = new RobotManager();
+
+        public List<ComponentBase> AllComponents = new List<ComponentBase>();
+        public List<ComponentBase> UnlockedComponents = new List<ComponentBase>();
+        public List<ComponentBase> BuiltComponents = new List<ComponentBase>();
 
         public List<Robot.Robot> Robots { get; set; }
 
         public RobotManager()
         {
             Robots = new List<Robot.Robot>();
+
+
         }
 
-        public void PreRenderUpdate()
+        public override void PreRenderUpdate()
         {
             Console.WriteLine($"Robots.Count: {Robots.Count}");
 
@@ -25,7 +32,7 @@ namespace RobotGame.Shared
             }
         }
 
-        public void PostRenderUpdate()
+        public override void PostRenderUpdate()
         {
             
         }

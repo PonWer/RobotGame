@@ -4,8 +4,10 @@ using System.Text;
 
 namespace RobotGame.Shared.Robot.Parts
 {
-    public class Mobility
+    public class Mobility : ComponentBase
     {
         public double Speed { get; set; }
+
+        public override ComponentType GetComponentType() => ComponentType.Mobility;
     }
 }

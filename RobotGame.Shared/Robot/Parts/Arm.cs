@@ -4,8 +4,9 @@ using System.Text;
 
 namespace RobotGame.Shared.Robot.Parts
 {
-    public class Arm
+    public class Arm : ComponentBase
     {
-
+        public double MiningDamage { get; set; }
+        public override ComponentType GetComponentType() => ComponentType.Arm;
     }
 }

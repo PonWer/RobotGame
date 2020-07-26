@@ -1,12 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace RobotGame.Shared
+namespace RobotGame.Shared.Managers
 {
-    public partial class ResourceManager : IGameLoop
+    public partial class ResourceManager : ManagerBase
     {
         public static ResourceManager Instance { get; } = new ResourceManager();
         
+        public enum Resource
+        {
+            Wood,
+            Copper,
+            Iron,
+            Lithium,
+            Scrap
+        }
+
         #region Basic Resources
 
         public double Wood { get; set; } = 100;
@@ -15,7 +24,7 @@ namespace RobotGame.Shared
         public double Lithium { get; set; }
         public double Copper { get; set; }
 
-        public int Scrap { get; set; }
+        public double Scrap { get; set; }
 
         public double Energy { get; set; } = 150;
         #endregion
@@ -54,7 +63,7 @@ namespace RobotGame.Shared
             }
         }
 
-        public void PreRenderUpdate()
+        public override void PreRenderUpdate()
         {
             if (Wood - WoodsBurningForEnergy < 0)
             {
@@ -83,9 +92,42 @@ namespace RobotGame.Shared
 
         }
 
-        public void PostRenderUpdate()
+        public override void PostRenderUpdate()
         {
             throw new System.NotImplementedException();
+        }
+
+        public void AddResource(Resource inResource, double amount)
+        {
+            switch (inResource)
+            {
+                case Resource.Wood:
+                    Wood += amount;
+                    break;
+                case Resource.Copper:
+                    Copper += amount;
+                    break;
+                case Resource.Iron:
+                    Iron += amount;
+                    break;
+                case Resource.Lithium:
+                    Lithium += amount;
+                    break;
+                case Resource.Scrap:
+                    Scrap += amount;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(inResource), inResource, null);
+            }
+        }
+
+        public void AddResource(double inWood, double inCopper, double inIron, double inLithium, double inScrap)
+        {
+            Wood += inWood;
+            Copper += inCopper;
+            Iron += inIron;
+            Lithium += inLithium;
+            Scrap += inScrap;
         }
     }
 }

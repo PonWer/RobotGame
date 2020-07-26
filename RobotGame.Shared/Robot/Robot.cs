@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.AspNetCore.Components;
+using RobotGame.Shared.Managers;
 using RobotGame.Shared.Robot.Parts;
 using RobotGame.Shared.Robot.States;
 

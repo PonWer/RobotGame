@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using RobotGame.Shared.Managers;
 
 namespace RobotGame.Shared.Robot.States
 {
