@@ -27,7 +27,7 @@ namespace RobotGame
             Game.Updated -= GameOnUpdated;
         }
 
-        protected void GameOnUpdated(object sender, EventArgs e)
+        protected virtual void GameOnUpdated(object sender, EventArgs e)
         {
             StateHasChanged();
         }

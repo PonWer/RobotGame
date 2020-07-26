@@ -9,11 +9,7 @@
         <input @bind="Game.ResourceManager.WoodsBurningForEnergy" type="number" min="0"/>
     </Column>
     <Column ColumnSize="ColumnSize.Is8">
-        <LineChart @ref="EnergyChart" TItem="LiveDataPoint" style="height: 100%; width: 100%">
-            <ChartStreaming TItem="LiveDataPoint"
-                            Options="new ChartStreamingOptions { Delay = 1000, Duration = 200_000}"
-                            Refreshed="@OnHorizontalLineRefreshedEnergy" />
-        </LineChart>
+        <LineChart @ref="EnergyChart" TItem="double" OptionsJsonString="@ChartOptions" style="height: 100%; width: 100%"/>
     </Column>
 </Row>
 
@@ -22,10 +18,15 @@
         Wood
     </Column>
     <Column ColumnSize="ColumnSize.Is8">
-        <LineChart @ref="WoodChart" TItem="LiveDataPoint" style="height: 100%; width: 100%">
-            <ChartStreaming TItem="LiveDataPoint"
-                            Options="new ChartStreamingOptions { Delay = 1000, Duration = 200_000}"
-                            Refreshed="@OnHorizontalLineRefreshedWood" />
-        </LineChart>
+        <LineChart @ref="WoodChart" TItem="double" OptionsJsonString="@ChartOptions" style="height: 100%; width: 100%" />
+    </Column>
+</Row>
+
+<Row style="border: 1px solid black; margin-left: 0px; margin-right: 0px;">
+    <Column ColumnSize="ColumnSize.Is3">
+        Wood
+    </Column>
+    <Column ColumnSize="ColumnSize.Is8">
+        <LineChart @ref="IronChart" TItem="double" OptionsJsonString="@ChartOptions" style="height: 100%; width: 100%" />
     </Column>
 </Row>

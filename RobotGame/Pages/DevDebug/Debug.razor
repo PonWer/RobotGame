@@ -4,19 +4,22 @@
 <h1>DebugInfo</h1>
 
 <h4>FrameCount: @Game.FrameCount</h4>
+
 <h4>Subscribers to game loop: @Game.ListenerOnUpdated.Count</h4>
 <table class="table">
     <thead>
-    <tr>
-        <th>Name</th>
-    </tr>
+        <tr>
+            <th>Name</th>
+        </tr>
     </thead>
     <tbody>
-    @foreach (var listener in @Game.ListenerOnUpdated)
-    {
-        <tr>
-            <td>@listener</td>
-        </tr>
-    }
+        @foreach (var listener in @Game.ListenerOnUpdated)
+        {
+            <tr>
+                <td>@listener</td>
+            </tr>
+        }
     </tbody>
 </table>
+
+<Button Color="Color.Primary" Clicked="@OnAdd100ToAllResourcesButton">Add 100 to all resources</Button>
