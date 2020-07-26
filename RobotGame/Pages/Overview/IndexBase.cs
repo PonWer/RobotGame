@@ -8,6 +8,7 @@ using Blazorise.Charts;
 using Blazorise.Charts.Streaming;
 using Microsoft.AspNetCore.Components;
 using RobotGame.Shared;
+#pragma warning disable 618
 
 namespace RobotGame.Pages.Overview
 {
@@ -18,6 +19,8 @@ namespace RobotGame.Pages.Overview
         public LineChart<LiveDataPoint> EnergyChart;
         public LineChart<LiveDataPoint> WoodChart;
 
+        public string ChartOptions = "{\"title\":{\"display\":false},\"legend\":{\"display\":false},\"scales\":{\"xAxes\":[{\"display\":false,\"gridLines\":{\"display\":false}}],\"yAxes\":[{\"scaleLabel\":{\"display\":false},\"gridLines\":{\"display\":false},\"ticks\":{\"beginAtZero\":true}}]},\"Tooltips\":{\"enabled\":false},\"Hover\":{\"enabled\":false}}";
+
         public struct LiveDataPoint
         {
             public object X { get; set; }
@@ -25,55 +28,12 @@ namespace RobotGame.Pages.Overview
             public object Y { get; set; }
         }
 
-        public object ChartOptions = new
-        {
-            Title = new
-            {
-                Display = false,
-                Text = "Line chart (horizontal scroll) sample"
-            },
-            Legend = new 
-            {
-                Display = false
-            },
-            gridLines = new
-            {
-                display = false
-            },
-            Scales = new
-            {
-                YAxes = new object[]
-                {
-                    new{
-                        Ticks = new
-                        {
-                            beginAtZero = true
-                        }
-                    }
-                },
-                XAxes = new object[]
-                {
-                    new{
-                        display = false
-                    }
-                }
-            },
-            Tooltips = new
-            {
-                Enabled = false
-            },
-            Hover = new
-            {
-                Enabled = false
-            }
-        };
-
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             if (firstRender)
             {
-                await Task.WhenAll(
-                    HandleRedraw(EnergyChart, GetDataSetEnergy));
+                await Task.WhenAll(HandleRedraw(EnergyChart, GetDataSetEnergy));
+                await Task.WhenAll(HandleRedraw(WoodChart, GetDataSetWood));
             }
         }
 
@@ -83,16 +43,22 @@ namespace RobotGame.Pages.Overview
             where TModel : ChartModel
         {
             await chart.Clear();
+            chart.OptionsJsonString = ChartOptions;
             await chart.AddLabelsDatasetsAndUpdate(new[]{"","","","","","","","","","","","","","",""}, getDataSets.Select(x => x.Invoke()).ToArray());
         }
 
         public LineChartDataset<LiveDataPoint> GetDataSetEnergy()
         {
+            var energyHistory = new List<LiveDataPoint>();
+            for (var i = ResourceManager.Instance.EnergyHistory.Count - 1; i >= 0; i--)
+            {
+                energyHistory.Add(new LiveDataPoint(){X = ResourceManager.Instance.EnergyHistory[i],Y = DateTime.Now.AddSeconds(i * -1)});
+            }
             return new LineChartDataset<LiveDataPoint>
             {
-                Data = new List<LiveDataPoint>(),
+                Data = energyHistory,
                 Label = "Energy History",
-                BackgroundColor = ChartColor.FromRgba(255, 99, 132, 0.2f),
+                BackgroundColor = ChartColor.FromRgba(255, 99, 132, 1f),
                 BorderColor = ChartColor.FromRgba(255, 99, 132, 1f),
                 Fill = false,
                 LineTension = 0,
@@ -105,7 +71,7 @@ namespace RobotGame.Pages.Overview
             return new LineChartDataset<LiveDataPoint>
             {
                 Data = new List<LiveDataPoint>(),
-                Label = "Energy History",
+                Label = "Wood History",
                 BackgroundColor = ChartColor.FromRgba(255, 99, 132, 0.2f),
                 BorderColor = ChartColor.FromRgba(255, 99, 132, 1f),
                 Fill = false,

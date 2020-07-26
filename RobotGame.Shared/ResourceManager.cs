@@ -28,10 +28,10 @@ namespace RobotGame.Shared
         public double EnergyGainedFromWood { get; set; } = 2.5f;
         public double EnergyTransferenceRatio { get; set; } = 0.9f;
         public double EnergyGainedWithoutStoredEnergy { get; set; } = 0.1f;
-
-
+        
         #endregion
 
+        public List<double> EnergyHistory = new List<double>();
 
         public void PreRenderUpdate()
         {
@@ -43,9 +43,9 @@ namespace RobotGame.Shared
             Energy += WoodsBurningForEnergy * EnergyGainedFromWood;
             Wood -= WoodsBurningForEnergy;
 
-            //EnergyHistory.Add(Energy);
-            //if(EnergyHistory.Count > 10)
-            //    EnergyHistory.RemoveAt(0);
+            EnergyHistory.Add(Energy);
+            if (EnergyHistory.Count > 200)
+                EnergyHistory.RemoveAt(0);
 
         }
 
