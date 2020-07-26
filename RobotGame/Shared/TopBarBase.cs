@@ -22,5 +22,10 @@ namespace RobotGame.Shared
 
             return base.OnInitializedAsync();
         }
+
+        public string DoubleToTwoDecimals(double inValue)
+        {
+            return inValue.ToString("0.##");
+        }
     }
 }
