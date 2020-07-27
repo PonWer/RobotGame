@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Components;
 using RobotGame.Shared.Managers;
-using RobotGame.Shared.Robot.Parts;
 using RobotGame.Shared.Robot.States;
 
 namespace RobotGame.Shared.Robot
@@ -17,13 +16,103 @@ namespace RobotGame.Shared.Robot
         public Progress CurrentProgress { get; set; }
 
         #region Body
-        public Frame Frame { get; set; }
-        public List<Arm> Arms { get; set; }
-        public Mobility Mobility { get; set; }
-        public Battery Battery { get; set; }
-        public Storage Storage { get; set; }
+
+        private Component _frame;
+        public Component Frame
+        {
+            get => _frame;
+            set
+            {
+                _frame = value;
+                _frame.AssignedRobot = this;
+            }
+        }
+
+        private List<Component> _arms;
+        public List<Component> Arms
+        {
+            get => _arms;
+            set
+            {
+                _arms.ForEach(x => x.AssignedRobot = null);
+                _arms = value;
+                _arms.ForEach( x => x.AssignedRobot=this);
+            }
+        }
+
+        private Component _mobility;
+        public Component Mobility
+        {
+            get => _mobility;
+            set
+            {
+                _mobility = value;
+                _mobility.AssignedRobot = this;
+            }
+        }
+
+        private Component _battery;
+        public Component Battery
+        {
+            get => _battery;
+            set
+            {
+                _battery = value;
+                _battery.AssignedRobot = this;
+            }
+        }
+
+        private Component _storage;
+        public Component Storage
+        {
+            get => _storage;
+            set
+            {
+                _storage = value;
+                _storage.AssignedRobot = this;
+            }
+        }
         #endregion
-        
+
+        #region Battery
+        public double BatteryCurrent { get; set; }
+        public double BatteryMax => Battery.Effect.MaxCharge;
+        public string BatteryPercentage => $"{(int)(BatteryCurrent / BatteryMax * 100)}%";
+        #endregion
+
+        #region Health
+        public double HealthCurrent;
+        public double HealthMax => Frame.Effect.FrameHealth;
+        public string HealthPercentage => $"{(int)(HealthCurrent / HealthMax * 100)}%";
+        #endregion
+
+        #region Storage
+        public double MaxStorage => Storage.Effect.StorageSize;
+        public bool StorageIsFull => (Wood + Iron + Lithium + Copper + Scrap) >= MaxStorage;
+
+        public double Wood { get; set; }
+        public string WoodPercentage => $"{Wood / MaxStorage * 100}%";
+        public double Iron { get; set; }
+        public string IronPercentage => $"{Iron / MaxStorage * 100}%";
+        public double Lithium { get; set; }
+        public string LithiumPercentage => $"{Lithium / MaxStorage * 100}%";
+        public double Copper { get; set; }
+        public string CopperPercentage => $"{Copper / MaxStorage * 100}%";
+        public int Scrap { get; set; }
+        public string ScrapPercentage => $"{Scrap / MaxStorage * 100}%";
+
+        public void EmptyStorage()
+        {
+            ResourceManager.Instance.AddResource(Wood, Copper, Iron, Lithium, Scrap);
+
+            Wood = 0;
+            Iron = 0;
+            Lithium = 0;
+            Copper = 0;
+            Scrap = 0;
+        }
+        #endregion
+
         public bool ReturnToPreviousStateOnMaxBattery;
         
         public void PreRenderUpdate()
@@ -63,16 +152,16 @@ namespace RobotGame.Shared.Robot
                 case Progress.Obstacle.Empty:
                     break;
                 case Progress.Obstacle.Tree:
-                    Storage.Wood += CurrentZone.Tree.Quantity;
+                    Wood += CurrentZone.Tree.Quantity;
                     break;
                 case Progress.Obstacle.OreVein:
-                    Storage.Iron += CurrentZone.OreVein.Iron;
-                    Storage.Copper += CurrentZone.OreVein.Copper;
-                    Storage.Lithium += CurrentZone.OreVein.Lithium;
+                    Iron += CurrentZone.OreVein.Iron;
+                    Copper += CurrentZone.OreVein.Copper;
+                    Lithium += CurrentZone.OreVein.Lithium;
                     break;
                 case Progress.Obstacle.Enemy:
                     //Todo
-                    Storage.Scrap += CurrentZone.Tree.Quantity;
+                    Scrap += CurrentZone.Tree.Quantity;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -84,16 +173,16 @@ namespace RobotGame.Shared.Robot
             if (CurrentProgress.Path[0] == Progress.Obstacle.Empty)
             {
                 CurrentProgress.Move();
-                Battery.Current -= 0.1f;
+                BatteryCurrent -= 0.1f;
                 return;
             }
 
-            Battery.Current -= 0.5f;
+            BatteryCurrent -= 0.5f;
             if (CurrentProgress.Path[0] == Progress.Obstacle.Enemy)
             {
-                //var damage = AttackDamage - CurrentZone.EnemyDefense;
-                //CurrentProgress.ClosestObjectHealth -= damage > 0 ? damage : 0;
-                //Frame.HealthCurrent -= CurrentZone.EnemyDamage;
+                var damage = Arms[0].Effect.AttackDamage - CurrentZone.EnemyDefense;
+                CurrentProgress.ClosestObjectHealth -= damage > 0 ? damage : 0;
+                HealthCurrent -= CurrentZone.EnemyDamage;
             }
             else
             {

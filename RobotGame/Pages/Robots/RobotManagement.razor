@@ -20,10 +20,10 @@
                 <div class="progress">
                     <div class="progress-bar progress-bar-striped progress-bar-animated"
                          role="progressbar"
-                         aria-valuenow="@robot.Battery.Current"
+                         aria-valuenow="@robot.BatteryCurrent"
                          aria-valuemin="0"
-                         aria-valuemax="@robot.Battery.Max"
-                         style="width: @robot.Battery.BatteryPercentage">@robot.Battery.BatteryPercentage</div>
+                         aria-valuemax="@robot.BatteryMax"
+                         style="width: @robot.BatteryPercentage">@robot.BatteryPercentage</div>
                     </div>
                 </Column>
                 <Column ColumnSize="ColumnSize.Is6">
@@ -31,10 +31,10 @@
                     <div class="progress">
                         <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
                              role="progressbar"
-                             aria-valuenow="@robot.Frame.HealthCurrent"
+                             aria-valuenow="@robot.HealthCurrent"
                              aria-valuemin="0"
-                             aria-valuemax="@robot.Frame.FrameHealthMax"
-                             style="width: @robot.Frame.HealthPercentage">@robot.Frame.HealthPercentage</div>
+                             aria-valuemax="@robot.HealthMax"
+                             style="width: @robot.HealthPercentage">@robot.HealthPercentage</div>
                         </div>
                     </Column>
 
@@ -90,11 +90,11 @@
                 </Row>
                 <div style="border: 1px solid black">
                     <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: @robot.Storage.WoodPercentage" aria-valuenow="@robot.Storage.Wood" aria-valuemin="0" aria-valuemax="@robot.Storage.MaxStorage">Wood</div>
-                        <div class="progress-bar bg-success" role="progressbar" style="width: @robot.Storage.IronPercentage" aria-valuenow="@robot.Storage.Iron" aria-valuemin="0" aria-valuemax="@robot.Storage.MaxStorage">Iron</div>
-                        <div class="progress-bar bg-warning" role="progressbar" style="width: @robot.Storage.CopperPercentage" aria-valuenow="@robot.Storage.Copper" aria-valuemin="0" aria-valuemax="@robot.Storage.MaxStorage">Copper</div>
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: @robot.Storage.LithiumPercentage" aria-valuenow="@robot.Storage.Lithium" aria-valuemin="0" aria-valuemax="@robot.Storage.MaxStorage">Lithium</div>
-                        <div class="progress-bar bg-info" role="progressbar" style="width: @robot.Storage.ScrapPercentage" aria-valuenow="@robot.Storage.Scrap" aria-valuemin="0" aria-valuemax="@robot.Storage.MaxStorage">Scrap</div>
+                        <div class="progress-bar" role="progressbar" style="width: @robot.WoodPercentage" aria-valuenow="@robot.Wood" aria-valuemin="0" aria-valuemax="@robot.MaxStorage">Wood</div>
+                        <div class="progress-bar bg-success" role="progressbar" style="width: @robot.IronPercentage" aria-valuenow="@robot.Iron" aria-valuemin="0" aria-valuemax="@robot.MaxStorage">Iron</div>
+                        <div class="progress-bar bg-warning" role="progressbar" style="width: @robot.CopperPercentage" aria-valuenow="@robot.Copper" aria-valuemin="0" aria-valuemax="@robot.MaxStorage">Copper</div>
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: @robot.LithiumPercentage" aria-valuenow="@robot.Lithium" aria-valuemin="0" aria-valuemax="@robot.MaxStorage">Lithium</div>
+                        <div class="progress-bar bg-info" role="progressbar" style="width: @robot.ScrapPercentage" aria-valuenow="@robot.Scrap" aria-valuemin="0" aria-valuemax="@robot.MaxStorage">Scrap</div>
                     </div>
                 </div>
             </div>

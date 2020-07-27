@@ -8,9 +8,7 @@ using Microsoft.AspNetCore.Components.Web;
 using RobotGame.Shared;
 using RobotGame.Shared.Managers;
 using RobotGame.Shared.Robot;
-using RobotGame.Shared.Robot.Parts;
 using RobotGame.Shared.Robot.States;
-using ComponentBase = RobotGame.Shared.Robot.Parts.ComponentBase;
 
 namespace RobotGame.Pages.Robots
 {
@@ -21,34 +19,34 @@ namespace RobotGame.Pages.Robots
             var frame = RobotManager
                 .Instance
                 .BuiltComponents
-                .First(x => x.GetComponentType() == ComponentBase.ComponentType.Frame) as Frame;
+                .First(x => x.Type == Component.ComponentType.Frame);
 
             var storage = RobotManager
                 .Instance
                 .BuiltComponents
-                .First(x => x.GetComponentType() == ComponentBase.ComponentType.Storage) as Storage;
+                .First(x => x.Type == Component.ComponentType.Storage);
 
             var battery = RobotManager
                 .Instance
                 .BuiltComponents
-                .First(x => x.GetComponentType() == ComponentBase.ComponentType.Battery) as Battery;
+                .First(x => x.Type == Component.ComponentType.Battery);
 
             var mobility = RobotManager
                 .Instance
                 .BuiltComponents
-                .First(x => x.GetComponentType() == ComponentBase.ComponentType.Mobility) as Mobility;
+                .First(x => x.Type == Component.ComponentType.Mobility);
 
             var arm = RobotManager
                 .Instance
                 .BuiltComponents
-                .First(x => x.GetComponentType() == ComponentBase.ComponentType.Arm) as Arm;
+                .First(x => x.Type == Component.ComponentType.Arm);
 
 
             var robot = new Robot()
             {
                 Frame = frame,
                 Storage = storage,
-                Arms = new List<Arm>(){arm},
+                Arms = new List<Component>(){arm},
                 Battery = battery,
                 Mobility = mobility,
                 CurrentZone = WorldManager.Instance.Zones[0]

@@ -36,14 +36,14 @@ namespace RobotGame.Shared.Managers
 
 
                 var tree = zone.Element("Tree");
-                var treeHealth = GetIntValue(tree, "FrameHealth");
+                var treeHealth = GetIntValue(tree, "Health");
                 var treeQuantity = GetIntValue(tree, "Quantity");
 
                 var oreVein = zone.Element("OreVein");
-                var oreVeinHealth = GetDoubleValue(zone, "FrameHealth");
-                var oreVeinCopper = GetDoubleValue(zone, "Copper"); 
-                var oreVeinIron = GetDoubleValue(zone, "Iron");
-                var oreVeinLithium = GetDoubleValue(zone, "Lithium");
+                var oreVeinHealth = GetDoubleValue(oreVein, "Health");
+                var oreVeinCopper = GetDoubleValue(oreVein, "Copper"); 
+                var oreVeinIron = GetDoubleValue(oreVein, "Iron");
+                var oreVeinLithium = GetDoubleValue(oreVein, "Lithium");
 
                 Zones.Add(
                     new Zone(

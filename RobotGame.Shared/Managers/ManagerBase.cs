@@ -9,7 +9,7 @@ namespace RobotGame.Shared.Managers
 {
     public abstract class ManagerBase : IGameLoop
     {
-        CultureInfo invCulture = CultureInfo.InvariantCulture;
+        readonly CultureInfo _invCulture = CultureInfo.InvariantCulture;
         public string GetResourceFile(string filename)
         {
             string result;
@@ -31,13 +31,13 @@ namespace RobotGame.Shared.Managers
         protected int GetIntValue(XElement element, string inTagName)
         {
             var value = element.Element(inTagName)?.Value;
-            return string.IsNullOrWhiteSpace(value) ? 0 : int.Parse(value, invCulture);
+            return string.IsNullOrWhiteSpace(value) ? 0 : int.Parse(value, _invCulture);
         }
 
         protected double GetDoubleValue(XElement element, string inTagName)
         {
             var value = element.Element(inTagName)?.Value;
-            return string.IsNullOrWhiteSpace(value) ? 0 : double.Parse(value, invCulture);
+            return string.IsNullOrWhiteSpace(value) ? 0 : double.Parse(value, _invCulture);
         }
 
         protected string GetStringValue(XElement element, string inTagName)

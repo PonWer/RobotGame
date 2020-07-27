@@ -14,13 +14,13 @@ namespace RobotGame.Shared.Robot.States
 
         public override void OnStateUpdate(Robot inRobot)
         {
-            if (inRobot.Battery.Current <= 0)
+            if (inRobot.BatteryCurrent <= 0)
             {
                 inRobot.ChangeState(IdleState.Instance);
                 return;
             }
 
-            inRobot.Battery.Current--;
+            inRobot.BatteryCurrent--;
             ResourceManager.Instance.Scrap++;
         }
 

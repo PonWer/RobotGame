@@ -3,7 +3,7 @@
   <Version>2020.07.27.001</Version>
   <Arms>
     <Arm>
-      <Type>Woodcutter</Type>
+      <SubType>Woodcutter</SubType>
       <Material>Wood</Material>
       <UnlockIndex>0</UnlockIndex>
       <Effect>
@@ -20,7 +20,7 @@
       </Cost>
     </Arm>
     <Arm>
-      <Type>Woodcutter</Type>
+      <SubType>Woodcutter</SubType>
       <Material>Copper</Material>
       <UnlockIndex>1</UnlockIndex>
       <Effect>
@@ -37,7 +37,7 @@
       </Cost>
     </Arm>
     <Arm>
-      <Type>Woodcutter</Type>
+      <SubType>Woodcutter</SubType>
       <Material>Iron</Material>
       <UnlockIndex>2</UnlockIndex>
       <Effect>
@@ -56,7 +56,7 @@
   </Arms>
   <Batteries>
     <Battery>
-      <Type>Charging Focused</Type>
+      <SubType>Charging Focused</SubType>
       <Material>Base</Material>
       <UnlockIndex>0</UnlockIndex>
       <Effect>
@@ -72,7 +72,7 @@
       </Cost>
     </Battery>
     <Battery>
-      <Type>Storage Focus</Type>
+      <SubType>Storage Focus</SubType>
       <Material>Base</Material>
       <UnlockIndex>0</UnlockIndex>
       <Effect>
@@ -88,7 +88,7 @@
       </Cost>
     </Battery>
     <Battery>
-      <Type>Charging Focused</Type>
+      <SubType>Charging Focused</SubType>
       <Material>Upgrade</Material>
       <UnlockIndex>1</UnlockIndex>
       <Effect>
@@ -104,7 +104,7 @@
       </Cost>
     </Battery>
     <Battery>
-      <Type>Storage Focus</Type>
+      <SubType>Storage Focus</SubType>
       <Material>Upgrade</Material>
       <UnlockIndex>1</UnlockIndex>
       <Effect>
@@ -122,7 +122,7 @@
   </Batteries>
   <Storages>
     <Storage>
-      <Type>Box</Type>
+      <SubType>Box</SubType>
       <Material>Wood</Material>
       <UnlockIndex>0</UnlockIndex>
       <Effect>
@@ -137,7 +137,7 @@
       </Cost>
     </Storage>
     <Storage>
-      <Type>Box</Type>
+      <SubType>Box</SubType>
       <Material>Copper</Material>
       <UnlockIndex>0</UnlockIndex>
       <Effect>
@@ -152,7 +152,7 @@
       </Cost>
     </Storage>
     <Storage>
-      <Type>Box</Type>
+      <SubType>Box</SubType>
       <Material>Iron</Material>
       <UnlockIndex>0</UnlockIndex>
       <Effect>
@@ -169,7 +169,7 @@
   </Storages>
   <Mobilities>
     <Mobility>
-      <Type>Caterpillar</Type>
+      <SubType>Caterpillar</SubType>
       <Material>Wood</Material>
       <UnlockIndex>0</UnlockIndex>
       <Effect>
@@ -185,7 +185,7 @@
       </Cost>
     </Mobility>
     <Mobility>
-      <Type>Caterpillar</Type>
+      <SubType>Caterpillar</SubType>
       <Material>Wood</Material>
       <UnlockIndex>0</UnlockIndex>
       <Effect>
@@ -203,7 +203,7 @@
   </Mobilities>
   <Frames>
     <Frame>
-      <Type>Basic</Type>
+      <SubType>Basic</SubType>
       <Material>Wood</Material>
       <UnlockIndex>0</UnlockIndex>
       <Effect>
@@ -219,7 +219,7 @@
       </Cost>
     </Frame>
     <Frame>
-      <Type>Basic</Type>
+      <SubType>Basic</SubType>
       <Material>Copper</Material>
       <UnlockIndex>1</UnlockIndex>
       <Effect>
@@ -235,5 +235,4 @@
       </Cost>
     </Frame>
   </Frames>
-
 </RobotComponentData>

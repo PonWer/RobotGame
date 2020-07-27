@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using RobotGame.Shared.Managers;
-
-namespace RobotGame.Shared.Robot.Parts
+﻿namespace RobotGame.Shared.Robot
 {
-    public abstract class ComponentBase
+    public class Component
     {
         public enum ComponentType
         {
@@ -16,15 +11,16 @@ namespace RobotGame.Shared.Robot.Parts
             Battery
         }
 
-        public abstract ComponentType GetComponentType();
+        public ComponentType Type;
 
         public string Material;
-        public string Type;
+        public string SubType;
         public int UnlockIndex;
 
         public Effect Effect;
         public Cost Cost;
 
+        public Robot AssignedRobot;
     }
 
     public class Cost

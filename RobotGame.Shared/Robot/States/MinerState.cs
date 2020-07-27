@@ -16,7 +16,7 @@ namespace RobotGame.Shared.Robot.States
 
         public override void OnStateUpdate(Robot inRobot)
         {
-            if (inRobot.Battery.Current <= 0 || inRobot.Frame.HealthCurrent <= 0)
+            if (inRobot.BatteryCurrent <= 0 || inRobot.HealthCurrent <= 0)
             {
                 inRobot.ChangeState(IdleState.Instance);
                 return;
@@ -29,7 +29,7 @@ namespace RobotGame.Shared.Robot.States
 
             inRobot.ProgressTheProgress();
 
-            if (inRobot.Storage.IsFull)
+            if (inRobot.StorageIsFull)
             {
                 inRobot.ChangeState(IdleState.Instance);
             }
