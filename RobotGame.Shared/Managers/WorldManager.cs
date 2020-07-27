@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Xml;
@@ -21,27 +22,28 @@ namespace RobotGame.Shared.Managers
         public void ReadWorldDataXml()
         {
             var reader = XElement.Parse(GetResourceFile("WorldData.xml"));
-            var df = reader.Name.Namespace;
-            var worldVersion = reader.Element(df + "Version").Value;
+            var xNamespace = reader.Name.Namespace;
+            var worldVersion = reader.Element(xNamespace + "Version").Value;
 
             Console.WriteLine($"Reading WorldData.xml, version:{worldVersion}");
-            foreach (var zone in reader.Element(df + "Zones").Elements("Zone"))
+            foreach (var zone in reader.Element(xNamespace + "Zones").Elements("Zone"))
             {
+
                 var zoneName = zone.Element("Name").Value;
-                var enemyDamage = double.Parse(zone.Element("EnemyDamage").Value);
-                var enemyDefense = double.Parse(zone.Element("EnemyDefense").Value);
-                var enemyHealth = double.Parse(zone.Element("EnemyHealth").Value);
+                var enemyDamage = GetDoubleValue(zone, "EnemyDamage");
+                var enemyDefense = GetDoubleValue(zone, "EnemyDefense");
+                var enemyHealth = GetDoubleValue(zone, "EnemyHealth");
 
 
                 var tree = zone.Element("Tree");
-                var treeHealth = int.Parse(tree.Element("Health").Value);
-                var treeQuantity = int.Parse(tree.Element("Quantity").Value);
+                var treeHealth = GetIntValue(tree, "FrameHealth");
+                var treeQuantity = GetIntValue(tree, "Quantity");
 
                 var oreVein = zone.Element("OreVein");
-                var oreVeinHealth = double.Parse(oreVein.Element("Health").Value);
-                var oreVeinCopper = double.Parse(oreVein.Element("Copper").Value);
-                var oreVeinIron = double.Parse(oreVein.Element("Iron").Value);
-                var oreVeinLithium = double.Parse(oreVein.Element("Lithium").Value);
+                var oreVeinHealth = GetDoubleValue(zone, "FrameHealth");
+                var oreVeinCopper = GetDoubleValue(zone, "Copper"); 
+                var oreVeinIron = GetDoubleValue(zone, "Iron");
+                var oreVeinLithium = GetDoubleValue(zone, "Lithium");
 
                 Zones.Add(
                     new Zone(

@@ -9,14 +9,14 @@ namespace RobotGame.Shared.Robot.States
         public override void OnStateEnter(Robot inRobot)
         {
             Console.WriteLine($"Entering State {nameof(IdleState)}");
-            inRobot.Frame.Storage.Empty();
+            inRobot.Storage.Empty();
         }
 
         public static IdleState Instance { get; } = new IdleState();
 
         public override void OnStateUpdate(Robot inRobot)
         {
-            if (inRobot.Battery_Current >= inRobot.Battery_Max)
+            if (inRobot.Battery.Current >= inRobot.Battery.Effect.MaxCharge)
             {
                 if (inRobot.ReturnToPreviousStateOnMaxBattery && inRobot.PreviousState != null)
                 {
@@ -27,18 +27,18 @@ namespace RobotGame.Shared.Robot.States
             {
                 if (ResourceManager.Instance.Energy > 1)
                 {
-                    inRobot.Battery_Current += ResourceManager.Instance.EnergyTransferenceRatio * 1;
+                    inRobot.Battery.Current += ResourceManager.Instance.EnergyTransferenceRatio * 1;
                     ResourceManager.Instance.Energy -= 1;
                 }
                 else
                 {
-                    inRobot.Battery_Current += ResourceManager.Instance.EnergyGainedWithoutStoredEnergy;
+                    inRobot.Battery.Current += ResourceManager.Instance.EnergyGainedWithoutStoredEnergy;
                 }
             }
 
-            if (inRobot.HealthCurrent < inRobot.Health_Max)
+            if (inRobot.Frame.HealthCurrent < inRobot.Frame.Effect.FrameHealth)
             {
-                inRobot.HealthCurrent += 1;
+                inRobot.Frame.HealthCurrent += 1;
             }
         }
 

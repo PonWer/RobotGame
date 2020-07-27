@@ -6,16 +6,9 @@ namespace RobotGame.Shared.Robot.Parts
 {
     public class Frame : ComponentBase
     {
-        
-        public List<Arm> Arms { get; set; }
-        public Mobility Mobility { get; set; }
-        public Battery Battery { get; set; }
-        public Storage Storage { get; set; } = new Storage();
-
-        #region Stats
-        public int ArmSlots { get; set; }
-        #endregion
-
+        public double HealthCurrent;
+        public double FrameHealthMax => Effect.FrameHealth;
         public override ComponentType GetComponentType() => ComponentType.Frame;
+        public string HealthPercentage => $"{(int)(HealthCurrent / Effect.FrameHealth * 100)}%";
     }
 }

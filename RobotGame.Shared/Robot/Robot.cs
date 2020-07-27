@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Components;
 using RobotGame.Shared.Managers;
@@ -14,18 +15,17 @@ namespace RobotGame.Shared.Robot
 
         public Zone CurrentZone { get; set; }
         public Progress CurrentProgress { get; set; }
-        public Frame Frame { get; set; } = new Frame();
 
-        public double AttackDamage { get; set; } = 1.2f;
-        public double HealthCurrent { get; set; }
-        public double Health_Max { get; set; }
-
-        public double Battery_Current { get; set; }
-        public double Battery_Max { get; set; }
-        public string BatteryPercentage => $"{(int)(Battery_Current / Battery_Max * 100)}%";
+        #region Body
+        public Frame Frame { get; set; }
+        public List<Arm> Arms { get; set; }
+        public Mobility Mobility { get; set; }
+        public Battery Battery { get; set; }
+        public Storage Storage { get; set; }
+        #endregion
+        
         public bool ReturnToPreviousStateOnMaxBattery;
-        public string HealthPercentage => $"{(int)(HealthCurrent / Health_Max * 100)}%";
-
+        
         public void PreRenderUpdate()
         {
             CurrentState?.OnStateUpdate(this);
@@ -63,16 +63,16 @@ namespace RobotGame.Shared.Robot
                 case Progress.Obstacle.Empty:
                     break;
                 case Progress.Obstacle.Tree:
-                    Frame.Storage.Wood += CurrentZone.Tree.Quantity;
+                    Storage.Wood += CurrentZone.Tree.Quantity;
                     break;
                 case Progress.Obstacle.OreVein:
-                    Frame.Storage.Iron += CurrentZone.OreVein.Iron;
-                    Frame.Storage.Copper += CurrentZone.OreVein.Copper;
-                    Frame.Storage.Lithium += CurrentZone.OreVein.Lithium;
+                    Storage.Iron += CurrentZone.OreVein.Iron;
+                    Storage.Copper += CurrentZone.OreVein.Copper;
+                    Storage.Lithium += CurrentZone.OreVein.Lithium;
                     break;
                 case Progress.Obstacle.Enemy:
                     //Todo
-                    Frame.Storage.Scrap += CurrentZone.Tree.Quantity;
+                    Storage.Scrap += CurrentZone.Tree.Quantity;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -84,16 +84,16 @@ namespace RobotGame.Shared.Robot
             if (CurrentProgress.Path[0] == Progress.Obstacle.Empty)
             {
                 CurrentProgress.Move();
-                Battery_Current -= 0.1f;
+                Battery.Current -= 0.1f;
                 return;
             }
 
-            Battery_Current -= 0.5f;
+            Battery.Current -= 0.5f;
             if (CurrentProgress.Path[0] == Progress.Obstacle.Enemy)
             {
-                var damage = AttackDamage - CurrentZone.EnemyDefense;
-                CurrentProgress.ClosestObjectHealth -= damage > 0 ? damage : 0;
-                HealthCurrent -= CurrentZone.EnemyDamage;
+                //var damage = AttackDamage - CurrentZone.EnemyDefense;
+                //CurrentProgress.ClosestObjectHealth -= damage > 0 ? damage : 0;
+                //Frame.HealthCurrent -= CurrentZone.EnemyDamage;
             }
             else
             {

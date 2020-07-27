@@ -7,13 +7,13 @@
       <Name>Home</Name>
       <EnemyDamage>0</EnemyDamage>
       <EnemyDefense>0</EnemyDefense>
-      <EnemyHealth>0</EnemyHealth>
+      <EnemyFrameHealth>0</EnemyFrameHealth>
       <Tree>
-        <Health>0</Health>
+        <FrameHealth>0</FrameHealth>
         <Quantity>0</Quantity>
       </Tree>
       <OreVein>
-        <Health>0</Health>
+        <FrameHealth>0</FrameHealth>
         <Copper>0</Copper>
         <Iron>0</Iron>
         <Lithium>0</Lithium>
@@ -24,13 +24,13 @@
       <Name>First Zone</Name>
       <EnemyDamage>1</EnemyDamage>
       <EnemyDefense>0</EnemyDefense>
-      <EnemyHealth>2</EnemyHealth>
+      <EnemyFrameHealth>2</EnemyFrameHealth>
       <Tree>
-        <Health>6</Health>
+        <FrameHealth>6</FrameHealth>
         <Quantity>5</Quantity>
       </Tree>
       <OreVein>
-        <Health>3</Health>
+        <FrameHealth>3</FrameHealth>
         <Copper>0.9</Copper>
         <Iron>0.1</Iron>
         <Lithium>0</Lithium>
@@ -41,13 +41,13 @@
       <Name>Second Zone</Name>
       <EnemyDamage>5</EnemyDamage>
       <EnemyDefense>2</EnemyDefense>
-      <EnemyHealth>10</EnemyHealth>
+      <EnemyFrameHealth>10</EnemyFrameHealth>
       <Tree>
-        <Health>10</Health>
+        <FrameHealth>10</FrameHealth>
         <Quantity>20</Quantity>
       </Tree>
       <OreVein>
-        <Health>5</Health>
+        <FrameHealth>5</FrameHealth>
         <Copper>0.4</Copper>
         <Iron>0.4</Iron>
         <Lithium>0.1</Lithium>

@@ -17,14 +17,50 @@ namespace RobotGame.Shared.Robot.Parts
         }
 
         public abstract ComponentType GetComponentType();
-        public int Id;
 
-        public ResourceManager.Resource MadeOfResource { get; set; }
+        public string Material;
+        public string Type;
+        public int UnlockIndex;
 
-        public double EnergyConsumption { get; set; }
+        public Effect Effect;
+        public Cost Cost;
 
-        public int ResearchPointCont;
-        public int WoodCost;
+    }
 
+    public class Cost
+    {
+        public int ResearchPoints;
+        public int Wood;
+        public int Copper;
+        public int Iron;
+        public int Lithium;
+    }
+
+    public class Effect
+    {
+        public double EnergyConsumption;
+
+        #region Battery
+        public double MaxCharge;
+        public double ChargingSpeed;
+        #endregion
+
+        #region Arm
+        public double WoodcutterDamage;
+        public double AttackDamage;
+        #endregion
+
+        #region Storage
+        public double StorageSize;
+        #endregion
+
+        #region Mobility
+        public double Speed;
+        #endregion
+
+        #region Frame
+        public double FrameHealth;
+        public double FrameDefense;
+        #endregion
     }
 }

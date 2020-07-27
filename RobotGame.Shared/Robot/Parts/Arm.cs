@@ -6,7 +6,6 @@ namespace RobotGame.Shared.Robot.Parts
 {
     public class Arm : ComponentBase
     {
-        public double MiningDamage { get; set; }
         public override ComponentType GetComponentType() => ComponentType.Arm;
     }
 }
