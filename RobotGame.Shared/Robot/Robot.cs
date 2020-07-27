@@ -34,9 +34,9 @@ namespace RobotGame.Shared.Robot
             get => _arms;
             set
             {
-                _arms.ForEach(x => x.AssignedRobot = null);
+                _arms?.ForEach(x => x.AssignedRobot = null);
                 _arms = value;
-                _arms.ForEach( x => x.AssignedRobot=this);
+                _arms?.ForEach( x => x.AssignedRobot=this);
             }
         }
 
