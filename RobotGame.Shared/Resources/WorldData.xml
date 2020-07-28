@@ -1,17 +1,46 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <World>
   <Version>2020.07.26.001</Version>
+  <Activities>
+    <Woodcutting>
+      <EmptyChance>70</EmptyChance>
+      <EnemyChance>20</EnemyChance>
+      <TreeChance>80</TreeChance>
+      <ScrapChance>0</ScrapChance>
+      <OreVeinChance>0</OreVeinChance>
+    </Woodcutting>
+    <Mining>
+      <EmptyChance>70</EmptyChance>
+      <EnemyChance>20</EnemyChance>
+      <TreeChance>0</TreeChance>
+      <ScrapChance>0</ScrapChance>
+      <OreVeinChance>80</OreVeinChance>
+    </Mining>
+    <Scavenging>
+      <EmptyChance>70</EmptyChance>
+      <EnemyChance>40</EnemyChance>
+      <TreeChance>0</TreeChance>
+      <ScrapChance>60</ScrapChance>
+      <OreVeinChance>0</OreVeinChance>
+    </Scavenging>
+  </Activities>
   <Zones>
     <Zone>
       <Index>0</Index>
       <Name>Home</Name>
-      <EnemyDamage>0</EnemyDamage>
-      <EnemyDefense>0</EnemyDefense>
-      <EnemyHealth>0</EnemyHealth>
+      <Enemy>
+        <Damage>0</Damage>
+        <Defense>0</Defense>
+        <Health>0</Health>
+      </Enemy>
       <Tree>
         <Health>0</Health>
         <Quantity>0</Quantity>
       </Tree>
+      <Scrap>
+        <Health>6</Health>
+        <Quantity>5</Quantity>
+      </Scrap>
       <OreVein>
         <Health>0</Health>
         <Copper>0</Copper>
@@ -22,13 +51,19 @@
     <Zone>
       <Index>1</Index>
       <Name>First Zone</Name>
-      <EnemyDamage>1</EnemyDamage>
-      <EnemyDefense>0</EnemyDefense>
-      <EnemyHealth>2</EnemyHealth>
+      <Enemy>
+        <Damage>1</Damage>
+        <Defense>0</Defense>
+        <Health>2</Health>
+      </Enemy>
       <Tree>
         <Health>6</Health>
         <Quantity>5</Quantity>
       </Tree>
+      <Scrap>
+        <Health>6</Health>
+        <Quantity>5</Quantity>
+      </Scrap>
       <OreVein>
         <Health>3</Health>
         <Copper>0.9</Copper>
@@ -39,13 +74,19 @@
     <Zone>
       <Index>2</Index>
       <Name>Second Zone</Name>
-      <EnemyDamage>5</EnemyDamage>
-      <EnemyDefense>2</EnemyDefense>
-      <EnemyHealth>10</EnemyHealth>
+      <Enemy>
+        <Damage>1</Damage>
+        <Defense>0</Defense>
+        <Health>2</Health>
+      </Enemy>
       <Tree>
         <Health>10</Health>
         <Quantity>20</Quantity>
       </Tree>
+      <Scrap>
+        <Health>6</Health>
+        <Quantity>5</Quantity>
+      </Scrap>
       <OreVein>
         <Health>5</Health>
         <Copper>0.4</Copper>

@@ -11,24 +11,14 @@ namespace RobotGame.Shared.Robot
 
         public double ClosestObjectHealth;
 
-        public int TreeChance { get; private set; }
-        public int OreVeinChance { get; private set; }
-        public int EnemyChance { get; private set; }
-
         private Zone CurrentZone { get; set; }
 
+        private ActivityChances Chance { get; set; }
 
-        public Progress(int treeChance, int oreVeinChance, int enemyChance, Zone inZone)
+        public Progress(Zone inZone, ActivityChances inChances)
         {
-            if (treeChance + oreVeinChance + enemyChance != 100)
-            {
-                throw new Exception("All chances dont equal 100");
-            }
-
-            TreeChance = treeChance;
-            OreVeinChance = oreVeinChance;
-            EnemyChance = enemyChance;
             CurrentZone = inZone;
+            Chance = inChances;
             
             Path = new List<Obstacle>();
             for (var i = 0; i < 20; i++)
@@ -41,16 +31,20 @@ namespace RobotGame.Shared.Robot
         {
             var rand = new Random();
 
-            if (rand.Next(100) >= 30) 
+            if (rand.Next(100) < Chance.Empty) 
                 return Obstacle.Empty;
 
             var chance = rand.Next(100);
-            if (chance < TreeChance)
+            if (chance < Chance.Tree)
             {
                 return Obstacle.Tree;
             }
-            return chance < TreeChance + OreVeinChance ? 
-                Obstacle.OreVein : 
+
+            if (chance < Chance.Tree + Chance.OreVein)
+                return Obstacle.OreVein;
+
+            return chance < Chance.Tree + Chance.OreVein + Chance.Scrap ? 
+                Obstacle.Scrap : 
                 Obstacle.Enemy;
         }
 
@@ -59,6 +53,7 @@ namespace RobotGame.Shared.Robot
             Empty,
             Tree,
             OreVein,
+            Scrap,
             Enemy
         }
 
@@ -82,6 +77,11 @@ namespace RobotGame.Shared.Robot
                 case Obstacle.Enemy:
                     ClosestObjectHealth = CurrentZone.EnemyHealth;
                     break;
+                case Obstacle.Scrap:
+                    ClosestObjectHealth = CurrentZone.Scrap.Health;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
     }

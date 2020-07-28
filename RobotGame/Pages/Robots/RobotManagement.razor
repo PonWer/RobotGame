@@ -48,7 +48,7 @@
                             }
                         </select>
                         Zone:<select @onchange="@robot.OnSelectedZoneChange" value="@robot.CurrentZone.Name">
-                            @foreach (var zone in WorldManager.Instance.AllZoneNames)
+                            @foreach (var zone in WorldManager.Instance.AllZoneNames())
                             {
                                 <option value=@zone>@zone</option>
                             }
@@ -71,6 +71,9 @@
                                         break;
                                     case Progress.Obstacle.Enemy:
                                         <img src="images/Enemy_LowRes.jpg" alt="Image" />
+                                        break;
+                                    case Progress.Obstacle.Scrap:
+                                        <img src="images/Scrap_LowRes.jpg" alt="Image"/>
                                         break;
                                     case Progress.Obstacle.Empty:
                                         <img src="images/Empty_LowRes.jpg" alt="Image" />

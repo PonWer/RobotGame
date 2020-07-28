@@ -4,6 +4,30 @@ using System.Text;
 
 namespace RobotGame.Shared
 {
+    public class ActivityChances
+    {
+        public readonly int Empty;
+        public readonly int Tree;
+        public readonly int OreVein;
+        public readonly int Scrap;
+        public readonly int Enemy;
+
+        public ActivityChances(int inEmpty, int inTree, int inOreVein, int inScrap, int inEnemy)
+        {
+            Empty = inEmpty;
+
+            Tree = inTree;
+            OreVein = inOreVein;
+            Scrap = inScrap;
+            Enemy = inEnemy;
+
+            if (Tree + OreVein + Scrap + Enemy != 100)
+            {
+                throw new Exception("Tree + OreVein + Scrap + Enemy chance must equal 100");
+            }
+        }
+    }
+
     public class OreVein
     {
         public OreVein(double inCopper, double inIron, double inLithium, double inHealth)
@@ -33,13 +57,27 @@ namespace RobotGame.Shared
 
     }
 
+    public class Scrap
+    {
+        public Scrap(int inHealth, int inQuantity)
+        {
+            Health = inHealth;
+            Quantity = inQuantity;
+        }
+
+        public readonly int Health;
+        public readonly int Quantity;
+
+    }
+
     public class Zone
     {
-        public Zone(Tree inTree, OreVein inOreVein, string inName, double inEnemyDamage, double inEnemyHealth,
+        public Zone(Tree inTree, OreVein inOreVein, Scrap inScrap, string inName, double inEnemyDamage, double inEnemyHealth,
             double inEnemyDefense)
         {
             Tree = inTree;
             OreVein = inOreVein;
+            Scrap = inScrap;
             Name = inName;
             EnemyDamage = inEnemyDamage;
             EnemyHealth = inEnemyHealth;
@@ -55,6 +93,7 @@ namespace RobotGame.Shared
 
         public readonly OreVein OreVein;
         public readonly Tree Tree;
+        public readonly Scrap Scrap;
 
     }
 }

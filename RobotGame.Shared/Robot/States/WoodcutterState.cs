@@ -1,4 +1,5 @@
 ﻿using System;
+using RobotGame.Shared.Managers;
 
 namespace RobotGame.Shared.Robot.States
 {
@@ -11,7 +12,7 @@ namespace RobotGame.Shared.Robot.States
             Console.WriteLine($"Entering State {nameof(WoodcutterState)}");
 
             if(inRobot.CurrentZone.Name != "Home")
-                inRobot.CurrentProgress = new Progress(80,5,15,inRobot.CurrentZone);
+                inRobot.CurrentProgress = new Progress(inRobot.CurrentZone, WorldManager.Instance.WoodcuttingActivity);
         }
 
         public override void OnStateUpdate(Robot inRobot)

@@ -160,8 +160,9 @@ namespace RobotGame.Shared.Robot
                     Lithium += CurrentZone.OreVein.Lithium;
                     break;
                 case Progress.Obstacle.Enemy:
-                    //Todo
-                    Scrap += CurrentZone.Tree.Quantity;
+                    break;
+                case Progress.Obstacle.Scrap:
+                    Scrap += CurrentZone.Scrap.Quantity;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
