@@ -22,9 +22,9 @@ namespace RobotGame.Shared.Robot
             get => _frame;
             set
             {
-                _frame.Detach(this);
+                _frame?.Detach(this);
                 _frame = value;
-                _frame.Attach(this);
+                _frame?.Attach(this);
             }
         }
 
@@ -34,9 +34,9 @@ namespace RobotGame.Shared.Robot
             get => _arms;
             set
             {
-                _arms?.ForEach(x => x.Detach(this));
+                _arms?.ForEach(x => x?.Detach(this));
                 _arms = value;
-                _arms?.ForEach( x => x.Attach(this));
+                _arms?.ForEach( x => x?.Attach(this));
             }
         }
 
@@ -46,9 +46,9 @@ namespace RobotGame.Shared.Robot
             get => _mobility;
             set
             {
-                _mobility.Detach(this);
+                _mobility?.Detach(this);
                 _mobility = value;
-                _mobility.Attach(this);
+                _mobility?.Attach(this);
             }
         }
 
@@ -58,9 +58,9 @@ namespace RobotGame.Shared.Robot
             get => _battery;
             set
             {
-                _battery.Detach(this);
+                _battery?.Detach(this);
                 _battery = value;
-                _battery.Attach(this);
+                _battery?.Attach(this);
             }
         }
 
@@ -70,9 +70,9 @@ namespace RobotGame.Shared.Robot
             get => _storage;
             set
             {
-                _storage.Detach(this);
+                _storage?.Detach(this);
                 _storage = value;
-                _storage.Attach(this);
+                _storage?.Attach(this);
             }
         }
         #endregion
