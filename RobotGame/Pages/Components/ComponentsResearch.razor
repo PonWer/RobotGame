@@ -1,0 +1,81 @@
+﻿@page "/componentsresearch"
+@using RobotGame.Shared.Managers
+@using RobotGame.Shared.Robot
+@inherits ComponentsResearchBase
+
+<h3>Components | Research</h3>
+
+<div class="container">
+    <div class="row">
+        <div class="col" style="border: 1px solid black;">
+            <TreeView Nodes="@Items"
+                      GetChildNodes="@(item => item.Children)"
+                      HasChildNodes="@(item => item.Children?.Any() == true)"
+                      @bind-SelectedNode="@SelectedNode"
+                      @bind-ExpandedNodes="@ExpandedNodes">
+                <NodeContent>
+                    @if (@context.Step == 0)
+                    {
+                        @switch (@context.Text)
+                        {
+                            case "Arm":
+                                <Icon Name="IconName.ThumbsUp" />
+                                break;
+                            case "Storage":
+                                <Icon Name="IconName.ShoppingBag" />
+                                break;
+                            case "Battery":
+                                <Icon Name="IconName.BatteryFull" />
+                                break;
+                            case "Frame":
+                                <Icon Name="IconName.Baby" />
+                                break;
+                            case "Mobility":
+                                <Icon Name="IconName.Times" />
+                                break;
+                        }
+                        <b>@context.Text</b>
+                    }
+                    @if (@context.Step == 1)
+                    {
+                        <b>@context.Text</b>
+                    }
+                    @if (@context.Step == 2)
+                    {
+                        <b>@context.Text</b>
+                    }
+                </NodeContent>
+            </TreeView>
+        </div>
+        <div class="col" style="border: 1px solid black;">
+            @if (@SelectedNode?.Component != null)
+            {
+                <div class="container">
+                    <div class="row">
+                        <h3>@SelectedNode?.Component?.Type @SelectedNode?.Component?.Material @SelectedNode?.Component?.SubType</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col" style="border: 1px solid black;">
+                            <h3>Cost</h3>
+                            @foreach (var value in @SelectedNode.Component.Cost.GetCosts())
+                            {
+                                <h5>@value</h5>
+                            }
+                        </div>
+                        <div class="col" style="border: 1px solid black;">
+                            <h3>Effects</h3>
+                            @foreach (var effect in @SelectedNode.Component.Effect.GetEffects())
+                            {
+                                <h5>@effect</h5>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <h3>Nothing Selected</h3>
+            }
+        </div>
+    </div>
+</div>

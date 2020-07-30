@@ -13,13 +13,9 @@ namespace RobotGame.Shared.Managers
         public static RobotManager Instance { get; } = new RobotManager();
 
         public List<Component> AllComponents = new List<Component>();
-        public List<Component> UnlockedComponents = new List<Component>();
-        public List<Component> BuiltComponents = new List<Component>();
 
         public List<Robot.Robot> Robots { get; set; }
-
-
-
+        
         public RobotManager()
         {
             Robots = new List<Robot.Robot>();
@@ -42,8 +38,11 @@ namespace RobotGame.Shared.Managers
             ReadArray(xNamespace, reader, "Mobilities", "Mobility", Component.ComponentType.Mobility);
             ReadArray(xNamespace, reader, "Storages", "Storage", Component.ComponentType.Storage);
 
-            UnlockedComponents = AllComponents.Where(x => x.UnlockIndex == 0).ToList();
-            BuiltComponents = AllComponents.Where(x => x.UnlockIndex == 0).ToList();
+            foreach (var component in AllComponents.Where( x => x.UnlockIndex == 0))
+            {
+                component.Researched = true;
+                component.QtyBuilt = 100;
+            }
         }
 
         private void ReadArray(XNamespace inNamespace, XElement inNode, string inArrayName, string inItemName,

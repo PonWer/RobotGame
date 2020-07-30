@@ -16,15 +16,15 @@ namespace RobotGame.Shared.Robot
         public Progress CurrentProgress { get; set; }
 
         #region Body
-
         private Component _frame;
         public Component Frame
         {
             get => _frame;
             set
             {
+                _frame.Detach(this);
                 _frame = value;
-                _frame.AssignedRobot = this;
+                _frame.Attach(this);
             }
         }
 
@@ -34,9 +34,9 @@ namespace RobotGame.Shared.Robot
             get => _arms;
             set
             {
-                _arms?.ForEach(x => x.AssignedRobot = null);
+                _arms?.ForEach(x => x.Detach(this));
                 _arms = value;
-                _arms?.ForEach( x => x.AssignedRobot=this);
+                _arms?.ForEach( x => x.Attach(this));
             }
         }
 
@@ -46,8 +46,9 @@ namespace RobotGame.Shared.Robot
             get => _mobility;
             set
             {
+                _mobility.Detach(this);
                 _mobility = value;
-                _mobility.AssignedRobot = this;
+                _mobility.Attach(this);
             }
         }
 
@@ -57,8 +58,9 @@ namespace RobotGame.Shared.Robot
             get => _battery;
             set
             {
+                _battery.Detach(this);
                 _battery = value;
-                _battery.AssignedRobot = this;
+                _battery.Attach(this);
             }
         }
 
@@ -68,8 +70,9 @@ namespace RobotGame.Shared.Robot
             get => _storage;
             set
             {
+                _storage.Detach(this);
                 _storage = value;
-                _storage.AssignedRobot = this;
+                _storage.Attach(this);
             }
         }
         #endregion

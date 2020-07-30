@@ -12,7 +12,7 @@
         <EnergyConsumption>2</EnergyConsumption>
       </Effect>
       <Cost>
-        <ResearchPoints>0</ResearchPoints>
+        <ResearchPoints>10</ResearchPoints>
         <Wood>0</Wood>
         <Copper>0</Copper>
         <Iron>0</Iron>

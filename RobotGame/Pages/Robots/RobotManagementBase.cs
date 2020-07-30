@@ -18,27 +18,27 @@ namespace RobotGame.Pages.Robots
         {
             var frame = RobotManager
                 .Instance
-                .BuiltComponents
+                .AllComponents
                 .First(x => x.Type == Component.ComponentType.Frame);
 
             var storage = RobotManager
                 .Instance
-                .BuiltComponents
+                .AllComponents
                 .First(x => x.Type == Component.ComponentType.Storage);
 
             var battery = RobotManager
                 .Instance
-                .BuiltComponents
+                .AllComponents
                 .First(x => x.Type == Component.ComponentType.Battery);
 
             var mobility = RobotManager
                 .Instance
-                .BuiltComponents
+                .AllComponents
                 .First(x => x.Type == Component.ComponentType.Mobility);
 
             var arm = RobotManager
                 .Instance
-                .BuiltComponents
+                .AllComponents
                 .First(x => x.Type == Component.ComponentType.Arm);
 
 
